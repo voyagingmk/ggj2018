@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class DataTuple
 {
-    public DataTuple(string _a, string _b)
+    public DataTuple(string _a, string _b, string _c = "")
     {
         a = _a;
         b = _b;
+        c = _c;
     }
     public string a;
     public string b;
+    public string c;
 };
 
 public class defines
@@ -30,6 +32,6 @@ public class defines
     new DataTuple("万物皆可无双", "你可能是正版游戏的受害者"),
     new DataTuple("我从河北省来", "美国 圣地亚戈"),
     new DataTuple("红红火火何厚滑", "韩韩会画画后悔画韩宏"),
-    new DataTuple("苟利国家生死以", "爱国、民主……"),
+    new DataTuple("苟利国家生死以", "爱国、民主……", "+1s"),
 };
 }

@@ -59,19 +59,21 @@ public class roleCtrl : MonoBehaviour {
                 circleRadius = 15;
                 break;
         }
-        if(main)
+        maxInputTimes = inputTimes;
+        if (main)
         {
             keyboardCtrl ctrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
             ctrl.enabled = true;
             ctrl.gameObject.tag = "mainrole";
-        }
-        maxInputTimes = inputTimes;
-        if (maxInputTimes > 0)
+        } else
         {
-            sayText.gameObject.SetActive(true);
-            sayText.text = "0 / " + maxInputTimes;
+            if (maxInputTimes > 0)
+            {
+                sayText.gameObject.SetActive(true);
+                sayText.text = "0 / " + maxInputTimes;
+            }
         }
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -125,7 +127,9 @@ public class roleCtrl : MonoBehaviour {
 
     public void Say(int gameType, bool jump)
     {
-        string str = defines.datas[gameType].a;
+        DataTuple tuple = defines.datas[gameType];
+        string str = tuple.a;
+        if (tuple.c.Length > 0) str = tuple.c;
         bg.SetActive(true);
         sayText.gameObject.SetActive(true);
         sayText.text = str;
