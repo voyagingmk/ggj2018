@@ -46,5 +46,20 @@ public class roleCtrl : MonoBehaviour {
         Transform camTrans = GameObject.FindWithTag("MainCamera").transform;
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         transform.LookAt(camTrans.position + camTrans.forward * 1000);
+        GameObject[] circles = GameObject.FindGameObjectsWithTag("circle");
+        for(int i = 0; i < circles.Length; i++)
+        {
+            circleCtrl ctrl = circles[i].GetComponent<circleCtrl>();
+            if(ctrl.collideList.Contains(gameObject.GetInstanceID())) {
+                continue;
+            }
+            float dis = Vector3.Distance(transform.position, ctrl.transform.position);
+            Debug.Log(dis + "," + ctrl.r);
+            if (dis < ctrl.r)
+            {
+                ctrl.collideList.Add(gameObject.GetInstanceID());
+                GetComponent<keyboardCtrl>().emitCircle();
+            }
+        }
     }
 }

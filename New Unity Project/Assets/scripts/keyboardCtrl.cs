@@ -59,9 +59,13 @@ public class keyboardCtrl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("您按下了Space键");
-            GameObject obj = Instantiate(circlePrefab);
-            obj.transform.position = transform.position + new Vector3(0, 1.0f, 0);
+            emitCircle();
             hasPress = true;
         }
+    }
+    public void emitCircle()
+    {
+        GameObject obj = Instantiate(circlePrefab);
+        obj.transform.position = transform.position + new Vector3(0, 1.0f, 0);
     }
 }

@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using System.Collections.Generic;
 
 [RequireComponent(typeof(MeshRenderer), typeof(MeshFilter))]
-public class drawCircle : MonoBehaviour
+public class circleCtrl : MonoBehaviour
 {
+    public List<int> collideList;
+    public int roleID = 0;
     public float Radius = 6;          //外半径  
     public float innerRadius = 3;     //内半径
     public float angleDegree = 360;   //扇形或扇面的角度
