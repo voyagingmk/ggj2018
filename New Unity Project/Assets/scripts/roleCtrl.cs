@@ -9,6 +9,7 @@ public class roleCtrl : MonoBehaviour {
     public bool lastOne = false; // 是否是下一关的主角
     int inputTimes = 1; // 输入次数
     int outputTimes = 1; // 输出次数
+    public float outputDelay = 2.0f;// 输出时间间隔
     public int circleRadius = 15; // 输出的圈消失时的半径
     public TextMesh textmesh;
     public SpriteRenderer sp;
@@ -80,10 +81,6 @@ public class roleCtrl : MonoBehaviour {
             {
                 continue;
             }
-            if (inputTimes <= 0 || outputTimes <= 0)
-            {
-                continue;
-            }
             if (ctrl.collideList.Contains(gameObject.GetInstanceID())) {
                 continue;
             }
@@ -92,16 +89,31 @@ public class roleCtrl : MonoBehaviour {
             if (dis < ctrl.r)
             {
                 ctrl.collideList.Add(gameObject.GetInstanceID());
-                inputTimes -= 1;
                 check = true;
-                if (outputTimes > 0)
+                Jump();
+                if (inputTimes <= 0)
                 {
-                    outputTimes -= 1;
-                    keyboardCtrl kCtrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
-                    kCtrl.emitCircle(circleRadius, true);
+                    continue;
+                }
+                inputTimes -= 1;
+                if (inputTimes <= 0 && outputTimes > 0)
+                {
+                    beginEmit();
                 }
             }
         }
+    }
+
+    void beginEmit()
+    {
+        if(outputTimes <= 0)
+        {
+            return;
+        }
+        outputTimes -= 1;
+        keyboardCtrl kCtrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
+        kCtrl.emitCircle(circleRadius, true);
+        Invoke("beginEmit", outputDelay);
     }
 
     public void Say(int gameType, bool jump)
@@ -115,8 +127,17 @@ public class roleCtrl : MonoBehaviour {
         {
             return;
         }
+        Jump();
+    }
+
+    public void Jump()
+    {
+
         keyboardCtrl kCtrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
-        kCtrl.ySpd = 1.0f;
+        if (kCtrl.ySpd >= 0)
+        {
+            kCtrl.ySpd = 1.0f;
+        }
     }
 
     void SayEnd()
