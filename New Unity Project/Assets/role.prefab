@@ -346,8 +346,6 @@ MonoBehaviour:
   type: 5
   main: 1
   lastOne: 0
-  inputTimes: 1
-  outputTimes: 1
   circleRadius: 100
   textmesh: {fileID: 102318679862442116}
   sp: {fileID: 212943602387228348}
@@ -366,11 +364,12 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1987162919425856}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 773ea84c4ea559745820bb581ddcbb44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ySpd: 0
   circlePrefab: {fileID: 1335769019576992, guid: 4963a8b266e860d4b908f7d79354a073,
     type: 2}
 --- !u!212 &212236706360577576

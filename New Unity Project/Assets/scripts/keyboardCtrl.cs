@@ -5,7 +5,7 @@ using UnityEngine;
 public class keyboardCtrl : MonoBehaviour {
     float speed = 5.0f;   //移动速度
     float yOffset = 0.0f;
-    float ySpd = 0.0f;
+    public float ySpd = 0.0f;
     public GameObject circlePrefab = null;
     bool hasPress = false;
     void Start () {
@@ -13,30 +13,29 @@ public class keyboardCtrl : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-        float translationZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-        float translationX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+	void Update ()
+    {
+        roleCtrl ctrl = gameObject.GetComponentInParent<roleCtrl>();
+        float translationZ = 0;
+        float translationX = 0;
+        if (ctrl.main)
+        {
+            translationZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
+            translationX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        }
         float yOffsetOld = yOffset;
         yOffset += ySpd;
         const float h = 1.0f;
-        const float spd = 0.175f;
-        if ( !hasPress && (translationX != 0.0f || translationZ != 0.0f))
+        float spd = 10.0f * Time.deltaTime;
+        if (!hasPress && (translationX != 0.0f || translationZ != 0.0f))
         {
-            // 还在移动
             if (ySpd == 0.0f)
             {
                 ySpd = spd;
             }
             else
             {
-                if (yOffsetOld >= 0.0f && yOffset < 0.0f)
-                {
-                    ySpd = spd;
-                }
-                if (yOffsetOld <= h && yOffset > h)
-                {
-                    ySpd = -spd;
-                }
+
             }
         }
         else
@@ -46,19 +45,22 @@ public class keyboardCtrl : MonoBehaviour {
                 yOffset = 0.0f;
                 ySpd = 0.0f;
             }
-            if (yOffsetOld <= h && yOffset > h)
-            {
-                ySpd = -spd;
-            }
+        }
+        if (yOffsetOld >= 0.0f && yOffset < 0.0f)
+        {
+            ySpd = spd;
+        }
+        if (yOffsetOld <= h && yOffset > h)
+        {
+            ySpd = -spd;
         }
         transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
         if (!hasPress)
         {
             transform.parent.transform.Translate(translationX, 0, translationZ);
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (ctrl.main && Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("您按下了Space键");
-                roleCtrl ctrl = gameObject.GetComponentInParent<roleCtrl>();
                 emitCircle(ctrl.circleRadius);
                 hasPress = true;
                 ctrl.check = true;

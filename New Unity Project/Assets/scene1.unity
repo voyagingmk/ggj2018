@@ -3851,7 +3851,7 @@ GameObject:
   - component: {fileID: 1943195322}
   m_Layer: 0
   m_Name: stages
-  m_TagString: Untagged
+  m_TagString: stageCtrl
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

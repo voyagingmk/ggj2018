@@ -7,8 +7,8 @@ public class roleCtrl : MonoBehaviour {
     public int type = 1; 
     public bool main = false; // 是否主角
     public bool lastOne = false; // 是否是下一关的主角
-    public int inputTimes = 1; // 输入次数
-    public int outputTimes = 1; // 输出次数
+    int inputTimes = 1; // 输入次数
+    int outputTimes = 1; // 输出次数
     public int circleRadius = 15; // 输出的圈消失时的半径
     public TextMesh textmesh;
     public SpriteRenderer sp;
@@ -97,8 +97,12 @@ public class roleCtrl : MonoBehaviour {
                 if (outputTimes > 0)
                 {
                     outputTimes -= 1;
-                    keyboardCtrl keyboardCtrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
-                    keyboardCtrl.emitCircle(circleRadius);
+                    keyboardCtrl kCtrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
+                    kCtrl.emitCircle(circleRadius);
+                    stageCtrl sCtrl = GameObject.FindGameObjectWithTag("stageCtrl").GetComponent<stageCtrl>();
+                    Say(defines.datas[sCtrl.gameType].a);
+                    kCtrl.ySpd = 1.0f;
+                    Invoke("SayEnd", 2);
                 }
             }
         }
