@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class roleCtrl : MonoBehaviour {
     public int type = 1; 
@@ -13,8 +14,12 @@ public class roleCtrl : MonoBehaviour {
     public SpriteRenderer sp;
     public List<Sprite> splist;
     public bool check = false;
+    public GameObject bg;
+    public TextMesh sayText;
     // Use this for initialization
     void Start () {
+        bg.SetActive(false);
+        sayText.gameObject.SetActive(false);
         switch (type) {
             case 1:
                 textmesh.text = "家里蹲";
@@ -97,5 +102,18 @@ public class roleCtrl : MonoBehaviour {
                 }
             }
         }
+    }
+
+    void Say(string str)
+    {
+        bg.SetActive(true);
+        sayText.gameObject.SetActive(true);
+        sayText.text = str;
+    }
+
+    void SayEnd()
+    {
+        bg.SetActive(false);
+        sayText.gameObject.SetActive(false);
     }
 }
