@@ -8,6 +8,7 @@ public class roleCtrl : MonoBehaviour {
     public bool main = false; // 是否主角
     public bool lastOne = false; // 是否是下一关的主角
     int inputTimes = 1; // 输入次数
+    int maxInputTimes;
     int outputTimes = 1; // 输出次数
     public float outputDelay = 2.0f;// 输出时间间隔
     public int circleRadius = 15; // 输出的圈消失时的半径
@@ -32,28 +33,28 @@ public class roleCtrl : MonoBehaviour {
             case 2:
                 textmesh.text = "上班族";
                 sp.sprite = splist[1];
-                inputTimes = 1;
+                inputTimes = 2;
                 outputTimes = 1;
                 circleRadius = 15;
                 break;
             case 3:
                 textmesh.text = "老顽固";
                 sp.sprite = splist[2];
-                inputTimes = 1;
+                inputTimes = 3;
                 outputTimes = 1;
                 circleRadius = 15;
                 break;
             case 4:
                 textmesh.text = "大V";
                 sp.sprite = splist[3];
-                inputTimes = 1;
+                inputTimes = 4;
                 outputTimes = 1;
                 circleRadius = 15;
                 break;
             case 5:
                 textmesh.text = "疯子";
                 sp.sprite = splist[4];
-                inputTimes = 1;
+                inputTimes = 5;
                 outputTimes = 1;
                 circleRadius = 15;
                 break;
@@ -64,7 +65,12 @@ public class roleCtrl : MonoBehaviour {
             ctrl.enabled = true;
             ctrl.gameObject.tag = "mainrole";
         }
-
+        maxInputTimes = inputTimes;
+        if (maxInputTimes > 0)
+        {
+            sayText.gameObject.SetActive(true);
+            sayText.text = "0 / " + maxInputTimes;
+        }
 	}
 	
 	// Update is called once per frame
@@ -96,6 +102,7 @@ public class roleCtrl : MonoBehaviour {
                     continue;
                 }
                 inputTimes -= 1;
+                sayText.text = (maxInputTimes - inputTimes) + " / " + maxInputTimes;
                 if (inputTimes <= 0 && outputTimes > 0)
                 {
                     beginEmit();
