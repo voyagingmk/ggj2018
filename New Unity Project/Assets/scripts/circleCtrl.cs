@@ -10,7 +10,7 @@ public class circleCtrl : MonoBehaviour
     public float innerRadius = 3;     //内半径
     public float angleDegree = 360;   //扇形或扇面的角度
     public int Segments = 60;         //分割数  
-    public float end = 100.0f;
+    public float end = 15.0f;
     public float r = 0.01f;
     public float ir = 0.005f;
     public float Spd = 0.3f;

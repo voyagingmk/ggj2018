@@ -52,20 +52,22 @@ public class keyboardCtrl : MonoBehaviour {
             }
         }
         transform.parent.transform.Translate(translationX, 0, translationZ);
-        Debug.Log(yOffset);
-        transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
+         transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
 
 
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("您按下了Space键");
-            emitCircle();
+            emitCircle(gameObject.GetComponentInParent<roleCtrl>().circleRadius);
             hasPress = true;
         }
     }
-    public void emitCircle()
+    public void emitCircle(int r)
     {
         GameObject obj = Instantiate(circlePrefab);
+        circleCtrl ctrl = obj.GetComponent<circleCtrl>();
+        ctrl.end = r;
+        ctrl.roleID = transform.parent.gameObject.GetInstanceID();
         obj.transform.position = transform.position + new Vector3(0, 1.0f, 0);
     }
 }
