@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class stageCtrl : MonoBehaviour {
+    public cameraFollow camFol;
     public GameObject stage;
     public List<GameObject> stagePrefabs;
     public int stageIdx = 0;
@@ -26,12 +27,17 @@ public class stageCtrl : MonoBehaviour {
             return;
         }
         int checkNum = 0;
+        roleCtrl lastOne = null;
         roleCtrl[] roleCtrls = stage.GetComponentsInChildren<roleCtrl>();
         for(int i = 0; i < roleCtrls.Length; i++)
         {
             if(roleCtrls[i].check)
             {
                 checkNum += 1;
+            }
+            if(roleCtrls[i].lastOne)
+            {
+                lastOne = roleCtrls[i];
             }
         }
         if(checkNum != roleCtrls.Length)
@@ -48,6 +54,7 @@ public class stageCtrl : MonoBehaviour {
             return;
         }
         end = true;
+        camFol.newFollow = lastOne.gameObject;
         Invoke("NextStage", changeDelay);
     }
 
@@ -63,6 +70,8 @@ public class stageCtrl : MonoBehaviour {
 
     public void EnterStage(int idx)
     {
+        camFol.newFollow = null;
+        camFol.t = 0;
         end = false;
         text.text = "第" + (idx + 1) + "关";
         stage = Instantiate(stagePrefabs[idx]);

@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class roleCtrl : MonoBehaviour {
     public int type = 1; 
-    public int main = 0; // 是否主角
+    public bool main = false; // 是否主角
+    public bool lastOne = false; // 是否是下一关的主角
     public int inputTimes = 1; // 输入次数
     public int outputTimes = 1; // 输出次数
     public int circleRadius = 15; // 输出的圈消失时的半径
@@ -51,7 +52,7 @@ public class roleCtrl : MonoBehaviour {
                 circleRadius = 15;
                 break;
         }
-        if(main == 1)
+        if(main)
         {
             keyboardCtrl ctrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
             ctrl.enabled = true;
