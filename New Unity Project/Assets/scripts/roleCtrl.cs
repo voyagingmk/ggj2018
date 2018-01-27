@@ -16,14 +16,14 @@ public class roleCtrl : MonoBehaviour {
     void Start () {
         switch (type) {
             case 1:
-                textmesh.text = "上班族";
+                textmesh.text = "家里蹲";
                 sp.sprite = splist[0];
                 inputTimes = 1; 
                 outputTimes = 1;
                 circleRadius = 15;
                 break;
             case 2:
-                textmesh.text = "家里蹲";
+                textmesh.text = "上班族";
                 sp.sprite = splist[1];
                 inputTimes = 1;
                 outputTimes = 1;
@@ -37,14 +37,14 @@ public class roleCtrl : MonoBehaviour {
                 circleRadius = 15;
                 break;
             case 4:
-                textmesh.text = "疯子";
+                textmesh.text = "大V";
                 sp.sprite = splist[3];
                 inputTimes = 1;
                 outputTimes = 1;
                 circleRadius = 15;
                 break;
             case 5:
-                textmesh.text = "大V";
+                textmesh.text = "疯子";
                 sp.sprite = splist[4];
                 inputTimes = 1;
                 outputTimes = 1;
