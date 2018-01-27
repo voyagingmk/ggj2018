@@ -7,6 +7,7 @@ public class keyboardCtrl : MonoBehaviour {
     float yOffset = 0.0f;
     float ySpd = 0.0f;
     public GameObject circlePrefab = null;
+    bool hasPress = false;
     void Start () {
         yOffset = 0.0f;
     }
@@ -59,6 +60,8 @@ public class keyboardCtrl : MonoBehaviour {
         {
             Debug.Log("您按下了Space键");
             GameObject obj = Instantiate(circlePrefab);
+            obj.transform.position = transform.position + new Vector3(0, 1.0f, 0);
+            hasPress = true;
         }
     }
 }

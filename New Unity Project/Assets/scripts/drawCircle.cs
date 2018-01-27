@@ -23,7 +23,6 @@ public class drawCircle : MonoBehaviour
     {
         if (r <= ir || Spd <= 0)
         {
-            Debug.Log("aaaaa");
             meshFilter.mesh = new Mesh();
             Destroy(this.gameObject);
             return;
