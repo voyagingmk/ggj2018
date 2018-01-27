@@ -21,30 +21,30 @@ public class drawCircle : MonoBehaviour
 
     void Update()
     {
-        float spd = Time.deltaTime * Spd;
-        meshFilter = GetComponent<MeshFilter>();
-        if(r >= end)
+        if (r <= ir || Spd <= 0)
         {
-            spd -= 0.1f;
-            spd = Mathf.Max(0, spd);
+            Debug.Log("aaaaa");
+            meshFilter.mesh = new Mesh();
+            Destroy(this.gameObject);
+            return;
+        }
+        meshFilter = GetComponent<MeshFilter>();
+        if (r >= end)
+        {
+            Spd -= 0.5f;
+            Spd = Mathf.Max(0, Spd);
+            float spd = Time.deltaTime * Spd;
             ir += spd;
         }
         else
         {
+            float spd = Time.deltaTime * Spd;
             r += spd;
             ir += spd;
             ir = Mathf.Max(0.0f, Mathf.Min(r - len, ir));
         }
-        if (r > ir)
-        {
-            meshFilter.mesh = CreateMesh(r, ir, angleDegree, Segments);
-        }
-        else
-        {
+        meshFilter.mesh = CreateMesh(r, ir, angleDegree, Segments);
 
-            meshFilter.mesh = new Mesh();
-            DestroyObject(this);
-        }
     }
 
     Mesh CreateMesh(float radius, float innerradius, float angledegree, int segments)

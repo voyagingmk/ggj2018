@@ -6,6 +6,7 @@ public class keyboardCtrl : MonoBehaviour {
     float speed = 5.0f;   //移动速度
     float yOffset = 0.0f;
     float ySpd = 0.0f;
+    public GameObject circlePrefab = null;
     void Start () {
         yOffset = 0.0f;
     }
@@ -57,6 +58,7 @@ public class keyboardCtrl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("您按下了Space键");
+            GameObject obj = Instantiate(circlePrefab);
         }
     }
 }
