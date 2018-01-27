@@ -54,7 +54,9 @@ public class stageCtrl : MonoBehaviour {
             return;
         }
         end = true;
-        camFol.newFollow = lastOne.gameObject;
+       if (lastOne) {
+            camFol.newFollow = lastOne.gameObject;
+        }
         Invoke("NextStage", changeDelay);
     }
 
