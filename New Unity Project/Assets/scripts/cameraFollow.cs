@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class cameraFollow : MonoBehaviour {
 
-    public GameObject followObject = null;
     public Vector3 offset = new Vector3(0, 20, -17);
     // Use this for initialization
     void Start () {
@@ -12,8 +11,14 @@ public class cameraFollow : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        transform.position = followObject.transform.position + offset;
+	void Update ()
+    {
+        GameObject followObject = GameObject.FindWithTag("mainrole");
+        if (!followObject)
+        {
+            return;
+        }
+        transform.position = followObject.transform.parent.transform.position + offset;
 
     }
 }

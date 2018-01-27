@@ -51,8 +51,8 @@ public class keyboardCtrl : MonoBehaviour {
                 ySpd = -spd;
             }
         }
-        transform.Translate(translationX, 0, translationZ);
-
+        transform.parent.transform.Translate(translationX, 0, translationZ);
+        Debug.Log(yOffset);
         transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
 
 
