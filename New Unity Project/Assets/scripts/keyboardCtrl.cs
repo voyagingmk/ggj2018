@@ -58,8 +58,10 @@ public class keyboardCtrl : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("您按下了Space键");
-            emitCircle(gameObject.GetComponentInParent<roleCtrl>().circleRadius);
+            roleCtrl ctrl = gameObject.GetComponentInParent<roleCtrl>();
+            emitCircle(ctrl.circleRadius);
             hasPress = true;
+            ctrl.check = true;
         }
     }
     public void emitCircle(int r)

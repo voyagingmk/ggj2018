@@ -11,6 +11,7 @@ public class roleCtrl : MonoBehaviour {
     public TextMesh textmesh;
     public SpriteRenderer sp;
     public List<Sprite> splist;
+    public bool check = false;
     // Use this for initialization
     void Start () {
         switch (type) {
@@ -86,6 +87,7 @@ public class roleCtrl : MonoBehaviour {
             {
                 ctrl.collideList.Add(gameObject.GetInstanceID());
                 inputTimes -= 1;
+                check = true;
                 if (outputTimes > 0)
                 {
                     outputTimes -= 1;
