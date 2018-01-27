@@ -20,7 +20,7 @@ public class keyboardCtrl : MonoBehaviour {
         yOffset += ySpd;
         const float h = 1.0f;
         const float spd = 0.175f;
-        if (translationX != 0.0f || translationZ != 0.0f)
+        if ( !hasPress && (translationX != 0.0f || translationZ != 0.0f))
         {
             // 还在移动
             if (ySpd == 0.0f)
@@ -28,7 +28,7 @@ public class keyboardCtrl : MonoBehaviour {
                 ySpd = spd;
             }
             else
-            { 
+            {
                 if (yOffsetOld >= 0.0f && yOffset < 0.0f)
                 {
                     ySpd = spd;
@@ -51,18 +51,20 @@ public class keyboardCtrl : MonoBehaviour {
                 ySpd = -spd;
             }
         }
-        transform.parent.transform.Translate(translationX, 0, translationZ);
-         transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
-
-
-        if (!hasPress && Input.GetKeyDown(KeyCode.Space))
+        transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
+        if (!hasPress)
         {
-            Debug.Log("您按下了Space键");
-            roleCtrl ctrl = gameObject.GetComponentInParent<roleCtrl>();
-            emitCircle(ctrl.circleRadius);
-            hasPress = true;
-            ctrl.check = true;
+            transform.parent.transform.Translate(translationX, 0, translationZ);
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                Debug.Log("您按下了Space键");
+                roleCtrl ctrl = gameObject.GetComponentInParent<roleCtrl>();
+                emitCircle(ctrl.circleRadius);
+                hasPress = true;
+                ctrl.check = true;
+            }
         }
+
     }
     public void emitCircle(int r)
     {

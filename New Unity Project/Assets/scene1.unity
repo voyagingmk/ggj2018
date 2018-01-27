@@ -610,7 +610,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1423711501596078, guid: 04cb13d1820f8cf4888ed04b72b4addd, type: 2}
       propertyPath: m_Name
-      value: main
+      value: c
       objectReference: {fileID: 0}
     - target: {fileID: 114696756116816840, guid: 04cb13d1820f8cf4888ed04b72b4addd,
         type: 2}
@@ -620,7 +620,7 @@ Prefab:
     - target: {fileID: 114696756116816840, guid: 04cb13d1820f8cf4888ed04b72b4addd,
         type: 2}
       propertyPath: main
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04cb13d1820f8cf4888ed04b72b4addd, type: 2}
@@ -733,7 +733,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1423711501596078, guid: 04cb13d1820f8cf4888ed04b72b4addd, type: 2}
       propertyPath: m_Name
-      value: c1
+      value: c
       objectReference: {fileID: 0}
     - target: {fileID: 114696756116816840, guid: 04cb13d1820f8cf4888ed04b72b4addd,
         type: 2}
@@ -794,7 +794,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1423711501596078, guid: 04cb13d1820f8cf4888ed04b72b4addd, type: 2}
       propertyPath: m_Name
-      value: role (1)
+      value: c
       objectReference: {fileID: 0}
     - target: {fileID: 114696756116816840, guid: 04cb13d1820f8cf4888ed04b72b4addd,
         type: 2}
@@ -842,6 +842,10 @@ Prefab:
     - target: {fileID: 4533189433020744, guid: 04cb13d1820f8cf4888ed04b72b4addd, type: 2}
       propertyPath: m_RootOrder
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423711501596078, guid: 04cb13d1820f8cf4888ed04b72b4addd, type: 2}
+      propertyPath: m_Name
+      value: c
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04cb13d1820f8cf4888ed04b72b4addd, type: 2}
@@ -1188,7 +1192,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1423711501596078, guid: 04cb13d1820f8cf4888ed04b72b4addd, type: 2}
       propertyPath: m_Name
-      value: c1
+      value: c
       objectReference: {fileID: 0}
     - target: {fileID: 114696756116816840, guid: 04cb13d1820f8cf4888ed04b72b4addd,
         type: 2}
@@ -1251,6 +1255,10 @@ Prefab:
         type: 2}
       propertyPath: main
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1423711501596078, guid: 04cb13d1820f8cf4888ed04b72b4addd, type: 2}
+      propertyPath: m_Name
+      value: main
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 04cb13d1820f8cf4888ed04b72b4addd, type: 2}
