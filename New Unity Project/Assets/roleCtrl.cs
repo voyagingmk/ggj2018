@@ -12,6 +12,6 @@ public class roleCtrl : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         Transform camTrans = GameObject.FindWithTag("MainCamera").transform;
-        transform.LookAt(camTrans);
+        transform.LookAt(camTrans.position + camTrans.forward * 1000);
     }
 }

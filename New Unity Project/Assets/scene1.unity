@@ -279,7 +279,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1307750232}
   - component: {fileID: 1307750234}
-  - component: {fileID: 1307750233}
   m_Layer: 8
   m_Name: role_tex
   m_TagString: Untagged
@@ -300,17 +299,6 @@ Transform:
   m_Father: {fileID: 1937270312}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1307750233
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1307750231}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4a78f7adecb50714daeeabb6ee7e40a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1307750234
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -436,7 +424,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1918907616}
   m_LocalRotation: {x: 0.2909932, y: -0, z: -0, w: 0.9567251}
-  m_LocalPosition: {x: 2.6, y: 15.15, z: -21.41}
+  m_LocalPosition: {x: 2.6, y: 26.38, z: -13.88}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -479,7 +467,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1937270311}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5c68101c1e283f14e812fd0f69612fb0, type: 3}
   m_Name: 
@@ -515,7 +503,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 1b6a5469f218a804d8615e8748a36891, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
