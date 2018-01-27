@@ -55,7 +55,7 @@ public class keyboardCtrl : MonoBehaviour {
          transform.position = new Vector3(transform.position.x, yOffset, transform.position.z);
 
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (!hasPress && Input.GetKeyDown(KeyCode.Space))
         {
             Debug.Log("您按下了Space键");
             roleCtrl ctrl = gameObject.GetComponentInParent<roleCtrl>();

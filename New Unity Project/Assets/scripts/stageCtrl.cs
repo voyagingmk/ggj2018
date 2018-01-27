@@ -12,6 +12,10 @@ public class stageCtrl : MonoBehaviour {
     public int changeDelay = 3;
     // Use this for initialization
     void Start () {
+        foreach(GameObject s in stagePrefabs)
+        {
+            s.SetActive(false);
+        }
         stage = null;
         EnterStage(0);
     }
