@@ -61,19 +61,23 @@ public class keyboardCtrl : MonoBehaviour {
             if (ctrl.main && Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("您按下了Space键");
-                emitCircle(ctrl.circleRadius);
+                emitCircle(ctrl.circleRadius, false);
                 hasPress = true;
                 ctrl.check = true;
             }
         }
 
     }
-    public void emitCircle(int r)
+    public void emitCircle(int r, bool jump)
     {
         GameObject obj = Instantiate(circlePrefab);
         circleCtrl ctrl = obj.GetComponent<circleCtrl>();
         ctrl.end = r;
         ctrl.roleID = transform.parent.gameObject.GetInstanceID();
         obj.transform.position = transform.position + new Vector3(0, 1.0f, 0);
+
+        roleCtrl rCtrl = gameObject.GetComponentInParent<roleCtrl>();
+        stageCtrl sCtrl = GameObject.FindGameObjectWithTag("stageCtrl").GetComponent<stageCtrl>();
+        rCtrl.Say(sCtrl.gameType, jump);
     }
 }

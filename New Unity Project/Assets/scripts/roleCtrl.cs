@@ -98,21 +98,25 @@ public class roleCtrl : MonoBehaviour {
                 {
                     outputTimes -= 1;
                     keyboardCtrl kCtrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
-                    kCtrl.emitCircle(circleRadius);
-                    stageCtrl sCtrl = GameObject.FindGameObjectWithTag("stageCtrl").GetComponent<stageCtrl>();
-                    Say(defines.datas[sCtrl.gameType].a);
-                    kCtrl.ySpd = 1.0f;
-                    Invoke("SayEnd", 2);
+                    kCtrl.emitCircle(circleRadius, true);
                 }
             }
         }
     }
 
-    void Say(string str)
+    public void Say(int gameType, bool jump)
     {
+        string str = defines.datas[gameType].a;
         bg.SetActive(true);
         sayText.gameObject.SetActive(true);
         sayText.text = str;
+        Invoke("SayEnd", 2);
+        if (!jump)
+        {
+            return;
+        }
+        keyboardCtrl kCtrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
+        kCtrl.ySpd = 1.0f;
     }
 
     void SayEnd()
