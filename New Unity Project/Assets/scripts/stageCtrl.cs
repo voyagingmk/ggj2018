@@ -14,9 +14,11 @@ public class stageCtrl : MonoBehaviour {
     public int changeDelay = 3;
     public List<Button> btns;
     public int gameType = -1;
+    public Image blackBg;
+    public float fadeSpd = 0;
+    public float fadeSpdConstant;
     void InitBtns()
     {
-       
         int i = 0;
         foreach (Button b in btns)
         {
@@ -31,6 +33,9 @@ public class stageCtrl : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+        fadeSpdConstant = 1.0f;
+        blackBg.enabled = false;
+        blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 0);
         InitBtns();
         foreach (GameObject s in stagePrefabs)
         {
@@ -45,12 +50,24 @@ public class stageCtrl : MonoBehaviour {
         Debug.Log(ctrl.type + ":" + btn.GetComponentInChildren<Text>().text);
         gameType = ctrl.type;
         btns[0].transform.parent.gameObject.SetActive(false);
-        EnterStage(0);
+        FadeAndEnterStage();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if(!stage || end) {
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.Home))
+        {
+            Application.Quit();
+        }
+        float oldAlpha = blackBg.color.a;
+        blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, oldAlpha + fadeSpd * Time.deltaTime);
+      //  Debug.Log("blackBg.color.a " + blackBg.color.a);
+        if (oldAlpha < 1.0f && blackBg.color.a >= 1.0f)
+        {
+            OnFadeOut();
+        }
+
+        if (!stage || end) {
             return;
         }
         int checkNum = 0;
@@ -75,7 +92,7 @@ public class stageCtrl : MonoBehaviour {
                 if(circles.Length == 0)
                 {
                     end = true;
-                    Invoke("ResetStage", changeDelay);
+                    Invoke("FadeAndEnterStage", changeDelay);
                 }
             }
             return;
@@ -84,40 +101,48 @@ public class stageCtrl : MonoBehaviour {
        if (lastOne) {
             camFol.newFollow = lastOne.gameObject;
         }
-        Invoke("NextStage", changeDelay);
+        stageIdx += 1;
+        Invoke("FadeAndEnterStage", changeDelay);
     }
 
-    public void ResetStage()
+    public void FadeAndEnterStage()
+    {
+        blackBg.enabled = true;
+        fadeSpd = fadeSpdConstant;
+        blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 0);
+    }
+
+    public void OnFadeOut()
+    {
+        Debug.Log("OnFadeOut");
+        fadeSpd = -fadeSpdConstant;
+        blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 1.0f);
+        EnterStage();
+        Invoke("OnFadeIn", 1);
+    }
+    public void OnFadeIn()
+    {
+        blackBg.enabled = false;
+    }
+
+    public void EnterStage()
     {
         if (stage)
         {
             Destroy(stage);
             stage = null;
         }
-        EnterStage(stageIdx);
-    }
-
-    public void EnterStage(int idx)
-    {
         camFol.newFollow = null;
         camFol.t = 0;
         end = false;
-        text.text = "第" + (idx + 1) + "关";
-        stage = Instantiate(stagePrefabs[idx]);
+        if (stagePrefabs.Count <= stageIdx)
+        {
+            return;
+        }
+        text.text = "第" + (stageIdx + 1) + "关";
+        stage = Instantiate(stagePrefabs[stageIdx]);
         stage.transform.parent = transform;
         stage.SetActive(true);
-    }
-
-    public void NextStage() {
-        if (stage)
-        {
-            Destroy(stage);
-            stage = null;
-        }
-        stageIdx += 1;
-        if (stagePrefabs.Count > stageIdx) {
-            EnterStage(stageIdx);
-        }
     }
 
 }
