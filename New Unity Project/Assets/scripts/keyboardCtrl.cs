@@ -13,7 +13,11 @@ public class keyboardCtrl : MonoBehaviour {
         // 使用上下方向键或者W、S键来控制前进后退
         float translationZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
         float translationX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+        transform.Translate(translationX, 0, translationZ);
 
-        transform.Translate(translationX, 0, translationZ); 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Debug.Log("您按下了Space键");
+        }
     }
 }
