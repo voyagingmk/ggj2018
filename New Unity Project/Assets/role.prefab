@@ -299,13 +299,13 @@ TextMesh:
   m_GameObject: {fileID: 1316368271847458}
   m_Text: 
   m_OffsetZ: 0
-  m_CharacterSize: 0.8
+  m_CharacterSize: 0.6
   m_LineSpacing: 1
   m_Anchor: 4
   m_Alignment: 1
   m_TabSize: 4
-  m_FontSize: 20
-  m_FontStyle: 1
+  m_FontSize: 18
+  m_FontStyle: 0
   m_RichText: 1
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
@@ -346,6 +346,7 @@ MonoBehaviour:
   type: 5
   main: 1
   lastOne: 0
+  outputDelay: 2
   circleRadius: 100
   textmesh: {fileID: 102318679862442116}
   sp: {fileID: 212943602387228348}

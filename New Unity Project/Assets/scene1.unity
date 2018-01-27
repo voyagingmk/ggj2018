@@ -3005,7 +3005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -3979,6 +3979,7 @@ MonoBehaviour:
   gameType: -1
   blackBg: {fileID: 1293863390}
   fadeSpd: 0
+  fadeSpdConstant: 0.05
 --- !u!1 &2027865149
 GameObject:
   m_ObjectHideFlags: 0
