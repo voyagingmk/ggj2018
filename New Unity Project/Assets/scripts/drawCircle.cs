@@ -8,9 +8,9 @@ public class drawCircle : MonoBehaviour
     public float angleDegree = 360;   //扇形或扇面的角度
     public int Segments = 60;         //分割数  
     public float end = 100.0f;
-    public float r = 1.0f;
-    public float ir = 0.5f;
-    public float spd = 0.3f;
+    public float r = 0.01f;
+    public float ir = 0.005f;
+    public float Spd = 0.3f;
     public float len = 2.0f;
     private MeshFilter meshFilter;
 
@@ -19,16 +19,32 @@ public class drawCircle : MonoBehaviour
 
     }
 
-     void Update()
+    void Update()
     {
+        float spd = Time.deltaTime * Spd;
         meshFilter = GetComponent<MeshFilter>();
-        if (r < end)
+        if(r >= end)
+        {
+            spd -= 0.1f;
+            spd = Mathf.Max(0, spd);
+            ir += spd;
+        }
+        else
         {
             r += spd;
             ir += spd;
             ir = Mathf.Max(0.0f, Mathf.Min(r - len, ir));
         }
-        meshFilter.mesh = CreateMesh(r, ir, angleDegree, Segments);
+        if (r > ir)
+        {
+            meshFilter.mesh = CreateMesh(r, ir, angleDegree, Segments);
+        }
+        else
+        {
+
+            meshFilter.mesh = new Mesh();
+            DestroyObject(this);
+        }
     }
 
     Mesh CreateMesh(float radius, float innerradius, float angledegree, int segments)
