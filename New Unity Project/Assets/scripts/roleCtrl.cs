@@ -108,18 +108,17 @@ public class roleCtrl : MonoBehaviour {
                 ctrl.collideList.Add(gameObject.GetInstanceID());
                 Jump();
                 camFol.tweenToNext(gameObject);
-				if (ctrl.boss && inputTimes == 0)
+				if (ctrl.boss)
                 {
                     GetKCtrl().circlePrefab = defines.circlePrefab;
-                    outputTimes = maxOutputTimes;
-                    inputTimes = maxInputTimes;
                 }
                 if (inputTimes <= 0)
                 {
                     continue;
                 }
                 inputTimes -= 1;
-                sayText.text = (maxInputTimes - inputTimes) + " / " + maxInputTimes;
+				if(!defines.boss)
+                	sayText.text = (maxInputTimes - inputTimes) + " / " + maxInputTimes;
                 if (inputTimes <= 0 && outputTimes > 0)
                 {
                     beginEmitJump();
@@ -152,8 +151,9 @@ public class roleCtrl : MonoBehaviour {
     public void Say(int gameType, bool jump)
     {
         DataTuple tuple = defines.datas[gameType];
-        string str = tuple.a;
-        if (tuple.c.Length > 0) str = defines.boss ? tuple.b : tuple.c;
+		string str = tuple.a;
+        if (tuple.c.Length > 0) str = tuple.c;
+		if(defines.boss) str = tuple.b;
         bg.SetActive(true);
         sayText.gameObject.SetActive(true);
         sayText.text = str;
@@ -175,7 +175,7 @@ public class roleCtrl : MonoBehaviour {
         }
     }
 
-    void SayEnd()
+	public void SayEnd()
     {
         bg.SetActive(false);
         sayText.gameObject.SetActive(false);

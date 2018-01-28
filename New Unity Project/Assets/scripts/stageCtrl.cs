@@ -78,6 +78,11 @@ public class stageCtrl : MonoBehaviour {
             OnFadeOut();
         }
 
+		if (Input.GetKeyDown (KeyCode.F3)){
+
+			btns [14].gameObject.SetActive (true);
+			return;
+		}
         if (!stage || end) {
             return;
         }
@@ -104,6 +109,7 @@ public class stageCtrl : MonoBehaviour {
                 main = roleCtrls[i];
             }
         }
+
 		if (Input.GetKeyDown(KeyCode.F1))
 		{
 			end = true;
@@ -165,11 +171,22 @@ public class stageCtrl : MonoBehaviour {
     }
 
     public void BeginLastStage()
-    {
-        if (!roleBoss)
-        {
-            return;
-        }
+	{
+		if (!roleBoss) {
+			return;
+		}
+		GameObject[] circles = GameObject.FindGameObjectsWithTag ("circle");
+		for (int i = 0; i < circles.Length; i++) {
+			Destroy (circles [i]);
+		}
+		roleCtrl[] roles = gameObject.GetComponentsInChildren<roleCtrl>();
+		for (int i = 0; i < roles.Length; i++) {
+			roleCtrl r = roles [i];
+			r.outputTimes = r.maxOutputTimes;
+			r.inputTimes = r.maxInputTimes;
+			r.CancelInvoke ();
+			r.SayEnd ();
+		} 
         defines.boss = true;
         roleBoss.SetActive(true);
         keyboardCtrl kCtrl = roleBoss.GetComponent<keyboardCtrl>();
@@ -217,7 +234,7 @@ public class stageCtrl : MonoBehaviour {
         {
             return;
         }
-        text.text = "第" + (stageIdx + 1) + "关";
+        text.text = "第  " + (stageIdx + 1) + " 关";
         stage = Instantiate(stagePrefabCur[stageIdx]);
         stage.transform.parent = transform;
         stage.SetActive(true);

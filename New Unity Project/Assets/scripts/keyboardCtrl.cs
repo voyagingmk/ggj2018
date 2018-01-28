@@ -87,7 +87,7 @@ public class keyboardCtrl : MonoBehaviour {
 
     public void emitCircle(int r, bool jump)
     {
-        GameObject obj = Instantiate(circlePrefab);
+		GameObject obj = Instantiate(defines.boss? defines.circlePrefab: circlePrefab);
         circleCtrl ctrl = obj.GetComponent<circleCtrl>();
         ctrl.end = r;
         ctrl.roleID = transform.parent.gameObject.GetInstanceID();
