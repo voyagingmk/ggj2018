@@ -65,7 +65,6 @@ public class roleCtrl : MonoBehaviour {
             keyboardCtrl ctrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
             ctrl.enabled = true;
             ctrl.gameObject.tag = "mainrole";
-            outputTimes = 0;
         } else
         {
             if (maxInputTimes > 0)
