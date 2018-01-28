@@ -18,12 +18,8 @@ public class cameraFollow : MonoBehaviour {
     {
         GameObject followObject = GameObject.FindWithTag("mainrole");
         Vector3 p = followObject.transform.parent.transform.position;
-        Debug.Log("main " + p);
-        Debug.Log("cam " + transform.position);
-        Debug.Log("tweenToObj " + tweenToObj.transform.position);
-        Debug.Log("new cam " + (tweenToObj.transform.position + offset));
         tweening = true;
-        transform.DOMove(tweenToObj.transform.position + offset, 0.5f).SetEase(Ease.InOutQuad);
+        transform.DOMove(tweenToObj.transform.position + offset, defines.TweenTime).SetEase(Ease.InOutQuad);
   //      DOTween.To(() => transform.position, x => transform.position = x, tweenToObj.transform.position, 0.5).SetRelative().SetLoops(-1, LoopType.Yoyo);
     }
 
