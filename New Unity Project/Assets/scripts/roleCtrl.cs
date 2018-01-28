@@ -50,7 +50,7 @@ public class roleCtrl : MonoBehaviour {
                 sp.sprite = splist[3];
                 inputTimes = 16;
                 outputTimes = 1;
-                circleRadius = 30;
+                circleRadius = 60;
                 break;
             case 5:
                 textmesh.text = "疯子";
