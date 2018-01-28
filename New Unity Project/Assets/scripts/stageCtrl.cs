@@ -99,6 +99,10 @@ public class stageCtrl : MonoBehaviour {
             {
                 main = roleCtrls[i];
             }
+            if (roleCtrls[i].boss)
+            {
+                main = roleCtrls[i];
+            }
         }
         if (Input.GetKeyDown(KeyCode.F1))
         {

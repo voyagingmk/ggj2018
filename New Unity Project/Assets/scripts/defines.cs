@@ -40,5 +40,5 @@ public class defines
     static public float TweenTime = 0.5f; //镜头从一个人转到另一个的时间间隔
     static public GameObject circlePrefab = null;
     static public bool boss = false;
-    static public float bossr = 50.0f;
+    static public float bossr = 20.0f;
 }
