@@ -108,9 +108,9 @@ public class roleCtrl : MonoBehaviour {
                     continue;
                 }
                 inputTimes -= 1;
-                sayText.text = (maxInputTimes - inputTimes) + " / " + maxInputTimes;
                 if (inputTimes <= 0 && outputTimes > 0)
                 {
+                    sayText.text = (maxInputTimes - inputTimes) + " / " + maxInputTimes;
                     beginEmitJump();
                 }
             }
