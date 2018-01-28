@@ -9,6 +9,8 @@ public class keyboardCtrl : MonoBehaviour {
     bool hasPress = false;
     void Start () {
         yOffset = 0.0f;
+        SpriteRenderer sr = gameObject.GetComponentInChildren<SpriteRenderer>();
+        sr.flipX = Random.Range(0.0f, 1.0f) < 0.5;
     }
 	
 	// Update is called once per frame
@@ -21,6 +23,15 @@ public class keyboardCtrl : MonoBehaviour {
         {
             translationZ = Input.GetAxis("Vertical") * defines.MoveSpeed * Time.deltaTime;
             translationX = Input.GetAxis("Horizontal") * defines.MoveSpeed * Time.deltaTime;
+            SpriteRenderer sr = gameObject.GetComponentInChildren<SpriteRenderer>();
+            if(translationX < 0)
+            {
+                sr.flipX = false;
+            }
+            if (translationX > 0)
+            {
+                sr.flipX = true;
+            }
         }
         float yOffsetOld = yOffset;
         yOffset += ySpd;
