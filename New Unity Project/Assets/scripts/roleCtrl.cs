@@ -56,7 +56,7 @@ public class roleCtrl : MonoBehaviour {
                 sp.sprite = splist[4];
                 inputTimes = 1;
                 outputTimes = 1;
-                circleRadius = 1;
+                circleRadius = 2;
                 break;
         }
         maxInputTimes = inputTimes;
