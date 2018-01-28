@@ -8,6 +8,8 @@ public class stageCtrl : MonoBehaviour {
     public cameraFollow camFol;
     public GameObject stage;
     public List<GameObject> stagePrefabs;
+    public List<GameObject> stagePrefabs2;
+    public List<GameObject> stagePrefabCur;
     public int stageIdx = 0;
     public bool end = false;
     public Text text;
@@ -41,6 +43,10 @@ public class stageCtrl : MonoBehaviour {
         {
             s.SetActive(false);
         }
+        foreach (GameObject s in stagePrefabs2)
+        {
+            s.SetActive(false);
+        }
         stage = null;
     }
 
@@ -50,7 +56,9 @@ public class stageCtrl : MonoBehaviour {
         Debug.Log(ctrl.type + ":" + btn.GetComponentInChildren<Text>().text);
         gameType = ctrl.type;
         btns[0].transform.parent.gameObject.SetActive(false);
+        stagePrefabCur = gameType != 14 ? stagePrefabs : stagePrefabs2;
         FadeAndEnterStage();
+
     }
 	
 	// Update is called once per frame
@@ -135,12 +143,12 @@ public class stageCtrl : MonoBehaviour {
         camFol.newFollow = null;
         camFol.t = 0;
         end = false;
-        if (stagePrefabs.Count <= stageIdx)
+        if (stagePrefabCur.Count <= stageIdx)
         {
             return;
         }
         text.text = "第" + (stageIdx + 1) + "关";
-        stage = Instantiate(stagePrefabs[stageIdx]);
+        stage = Instantiate(stagePrefabCur[stageIdx]);
         stage.transform.parent = transform;
         stage.SetActive(true);
     }
