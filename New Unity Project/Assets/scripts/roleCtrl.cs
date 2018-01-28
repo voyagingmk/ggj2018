@@ -111,9 +111,8 @@ public class roleCtrl : MonoBehaviour {
                 if (ctrl.boss)
                 {
                     GetKCtrl().circlePrefab = defines.circlePrefab;
-                    outputTimes = 2;
-                    beginEmitJump();
-                    continue;
+                    outputTimes = maxOutputTimes;
+                    inputTimes = maxInputTimes;
                 }
                 if (inputTimes <= 0)
                 {

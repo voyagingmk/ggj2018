@@ -89,7 +89,7 @@ public class keyboardCtrl : MonoBehaviour {
     {
         GameObject obj = Instantiate(circlePrefab);
         circleCtrl ctrl = obj.GetComponent<circleCtrl>();
-        ctrl.end = defines.boss? defines.bossr:r;
+        ctrl.end = r;
         ctrl.roleID = transform.parent.gameObject.GetInstanceID();
         obj.transform.position = transform.position + new Vector3(0, 1.0f, 0);
 
