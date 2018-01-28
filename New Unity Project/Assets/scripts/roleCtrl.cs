@@ -111,7 +111,8 @@ public class roleCtrl : MonoBehaviour {
                 if (ctrl.boss)
                 {
                     GetKCtrl().circlePrefab = ctrl.rCtrl.GetKCtrl().circlePrefab;
-                    outputTimes = 2;
+                    GetKCtrl().bossround = true;
+                    outputTimes = 5;
                     beginEmitJump();
                     continue;
                 }
@@ -150,11 +151,11 @@ public class roleCtrl : MonoBehaviour {
         Invoke("beginEmitJump", outputDelay);
     }
 
-    public void Say(int gameType, bool jump)
+    public void Say(int gameType, bool jump,bool boss)
     {
         DataTuple tuple = defines.datas[gameType];
         string str = tuple.a;
-        if (tuple.c.Length > 0) str = tuple.c;
+        if (tuple.c.Length > 0) str = boss ? tuple.b : tuple.c;
         bg.SetActive(true);
         sayText.gameObject.SetActive(true);
         sayText.text = str;

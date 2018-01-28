@@ -7,6 +7,7 @@ public class keyboardCtrl : MonoBehaviour {
     public float ySpd = 0.0f;
     public GameObject circlePrefab = null;
     public bool hasPress = false;
+    public bool bossround = false; 
     void Start () {
         yOffset = 0.0f;
         SpriteRenderer sr = gameObject.GetComponentInChildren<SpriteRenderer>();
@@ -98,8 +99,9 @@ public class keyboardCtrl : MonoBehaviour {
         if(rCtrl.boss)
         {
             ctrl.boss = true;
+            bossround = true;
         }
         ctrl.rCtrl = rCtrl;
-        rCtrl.Say(sCtrl.gameType, jump);
+        rCtrl.Say(sCtrl.gameType, jump, bossround);
     }
 }
