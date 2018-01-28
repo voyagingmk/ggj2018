@@ -102,23 +102,26 @@ public class stageCtrl : MonoBehaviour {
         {
             return;
         }
+       // Debug.Log("check " + (checkNum < roleCtrls.Length)  + (circles.Length == 0));
         // 失败检测
-        if(checkNum < roleCtrls.Length && circles.Length == 0)
+        if (checkNum < roleCtrls.Length && circles.Length == 0)
         {
-            int outputCount = 0;
+            int outputing = 0;
             for (int i = 0; i < roleCtrls.Length; i++)
             {
-                outputCount += roleCtrls[i].outputTimes;
-            }  
-            if(outputCount == 0)
+                outputing += (roleCtrls[i].outputTimes != roleCtrls[i].maxOutputTimes && roleCtrls[i].outputTimes > 0) ?1:0;
+            }
+           // Debug.Log("outputing " + outputing);
+            if (outputing == 0)
             { 
-                // 输出都为0了，失败了
+                // 没人在输出
                 end = true;
                 Invoke("FadeAndEnterStage", defines.changeDelay);
             }
             return;
         }
-        // 都被激活
+
+        // 都被激活了
         if (checkNum == roleCtrls.Length)
         {
             end = true;

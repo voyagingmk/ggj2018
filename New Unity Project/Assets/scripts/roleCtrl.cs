@@ -9,8 +9,9 @@ public class roleCtrl : MonoBehaviour {
     public bool lastOne = false; // 是否是下一关的主角
     public bool boss = false;
     public int inputTimes = 1; // 输入次数
-    int maxInputTimes;
+    public int maxInputTimes;
     public int outputTimes = 1; // 输出次数
+    public int maxOutputTimes;
     public float outputDelay = 2.0f;// 输出时间间隔
     public int circleRadius = 15; // 输出的圈消失时的半径
     public TextMesh textmesh;
@@ -60,6 +61,7 @@ public class roleCtrl : MonoBehaviour {
                 break;
         }
         maxInputTimes = inputTimes;
+        maxOutputTimes = outputTimes;
         if (main)
         {
             keyboardCtrl ctrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
@@ -109,7 +111,7 @@ public class roleCtrl : MonoBehaviour {
                 if (ctrl.boss)
                 {
                     GetKCtrl().circlePrefab = ctrl.rCtrl.GetKCtrl().circlePrefab;
-                    outputTimes = maxInputTimes;
+                    outputTimes = 2;
                     beginEmitJump();
                     continue;
                 }
