@@ -7,15 +7,15 @@ public class roleCtrl : MonoBehaviour {
     public int type = 1; 
     public bool main = false; // 是否主角
     public bool lastOne = false; // 是否是下一关的主角
-    int inputTimes = 1; // 输入次数
+    public bool boss = false;
+    public int inputTimes = 1; // 输入次数
     int maxInputTimes;
-    int outputTimes = 1; // 输出次数
+    public int outputTimes = 1; // 输出次数
     public float outputDelay = 2.0f;// 输出时间间隔
     public int circleRadius = 15; // 输出的圈消失时的半径
     public TextMesh textmesh;
     public SpriteRenderer sp;
     public List<Sprite> splist;
-    public bool check = false;
     public GameObject bg;
     public TextMesh sayText;
     // Use this for initialization
@@ -100,7 +100,6 @@ public class roleCtrl : MonoBehaviour {
             if (dis < ctrl.r + 1.0)
             {
                 ctrl.collideList.Add(gameObject.GetInstanceID());
-                check = true;
                 Jump();
                 camFol.tweenToNext(gameObject);
                 if (inputTimes <= 0)
@@ -168,5 +167,12 @@ public class roleCtrl : MonoBehaviour {
     {
         bg.SetActive(false);
         sayText.gameObject.SetActive(false);
+    }
+
+    public void bossEmit()
+    {
+        keyboardCtrl kCtrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
+        kCtrl.emitCircle(circleRadius, false);
+        Invoke("bossEmit", 1.0f);
     }
 }
