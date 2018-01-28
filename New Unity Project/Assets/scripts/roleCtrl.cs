@@ -76,8 +76,11 @@ public class roleCtrl : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-        Transform camTrans = GameObject.FindWithTag("MainCamera").transform;
+	void Update ()
+    {
+        GameObject camObj = GameObject.FindGameObjectWithTag("MainCamera");
+        cameraFollow camFol = camObj.GetComponent<cameraFollow>();
+        Transform camTrans = camObj.transform;
         transform.position = new Vector3(transform.position.x, 0, transform.position.z);
         transform.LookAt(camTrans.position + camTrans.forward * 1000);
         GameObject[] circles = GameObject.FindGameObjectsWithTag("circle");
@@ -99,6 +102,7 @@ public class roleCtrl : MonoBehaviour {
                 ctrl.collideList.Add(gameObject.GetInstanceID());
                 check = true;
                 Jump();
+                camFol.tweenToNext(gameObject);
                 if (inputTimes <= 0)
                 {
                     continue;

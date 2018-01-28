@@ -103,9 +103,10 @@ public class stageCtrl : MonoBehaviour {
             return;
         }
         end = true;
-       if (lastOne) {
-            camFol.newFollow = lastOne.gameObject;
-        }
+        /*
+        if (lastOne) {
+            camFol.tweenToNext(lastOne.gameObject);
+        }*/
         stageIdx += 1;
         Invoke("FadeAndEnterStage", defines.changeDelay);
     }
@@ -142,7 +143,7 @@ public class stageCtrl : MonoBehaviour {
             Destroy(stage);
             stage = null;
         }
-        camFol.newFollow = null;
+        camFol.tweening = false;
         camFol.t = 0;
         end = false;
         if (stagePrefabCur.Count <= stageIdx)
