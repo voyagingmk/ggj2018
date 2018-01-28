@@ -97,7 +97,7 @@ public class roleCtrl : MonoBehaviour {
             }
             float dis = Vector3.Distance(transform.position, ctrl.transform.position);
            // Debug.Log(dis + "," + ctrl.r);
-            if (dis < ctrl.r)
+            if (dis < ctrl.r + 1.0)
             {
                 ctrl.collideList.Add(gameObject.GetInstanceID());
                 check = true;
