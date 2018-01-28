@@ -10307,8 +10307,10 @@ MonoBehaviour:
   - {fileID: 1728843624}
   - {fileID: 425347242}
   stagePrefabs2: []
+  circlePrefab: {fileID: 1335769019576992, guid: ceb1853583bba80449316fc4bf0e56e5,
+    type: 2}
   stagePrefabCur: []
-  stageIdx: 0
+  stageIdx: 6
   end: 0
   text: {fileID: 173443480}
   btns:
