@@ -13,12 +13,10 @@ public class stageCtrl : MonoBehaviour {
     public int stageIdx = 0;
     public bool end = false;
     public Text text;
-    public int changeDelay = 3;
     public List<Button> btns;
     public int gameType = -1;
     public Image blackBg;
     public float fadeSpd = 0;
-    public float fadeSpdConstant;
     void InitBtns()
     {
         int i = 0;
@@ -35,7 +33,6 @@ public class stageCtrl : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
-        fadeSpdConstant = 1.0f;
         blackBg.enabled = false;
         blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 0);
         InitBtns();
@@ -100,33 +97,34 @@ public class stageCtrl : MonoBehaviour {
                 if(circles.Length == 0)
                 {
                     end = true;
-                    Invoke("FadeAndEnterStage", changeDelay);
+                    Invoke("FadeAndEnterStage", defines.changeDelay);
                 }
             }
             return;
         }
         end = true;
-       if (lastOne) {
-            camFol.newFollow = lastOne.gameObject;
-        }
+        /*
+        if (lastOne) {
+            camFol.tweenToNext(lastOne.gameObject);
+        }*/
         stageIdx += 1;
-        Invoke("FadeAndEnterStage", changeDelay);
+        Invoke("FadeAndEnterStage", defines.changeDelay);
     }
 
     public void FadeAndEnterStage()
     {
         blackBg.enabled = true;
-        fadeSpd = fadeSpdConstant;
+        fadeSpd = defines.FadeSpd;
         blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 0);
     }
 
     public void OnFadeOut()
     {
         Debug.Log("OnFadeOut");
-        fadeSpd = -fadeSpdConstant;
+        fadeSpd = -defines.FadeSpd;
         blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 1.0f);
         EnterStage();
-        Invoke("OnFadeIn", changeDelay);
+        Invoke("OnFadeIn", defines.changeDelay);
     }
     public void OnFadeIn()
     {
@@ -145,7 +143,7 @@ public class stageCtrl : MonoBehaviour {
             Destroy(stage);
             stage = null;
         }
-        camFol.newFollow = null;
+        camFol.tweening = false;
         camFol.t = 0;
         end = false;
         if (stagePrefabCur.Count <= stageIdx)
