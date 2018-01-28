@@ -9,6 +9,8 @@ public class keyboardCtrl : MonoBehaviour {
     bool hasPress = false;
     void Start () {
         yOffset = 0.0f;
+        SpriteRenderer sr = gameObject.GetComponentInChildren<SpriteRenderer>();
+        sr.flipX = Random.Range(0.0f, 1.0f) < 0.5;
     }
 	
 	// Update is called once per frame
@@ -22,12 +24,28 @@ public class keyboardCtrl : MonoBehaviour {
             translationZ = Input.GetAxis("Vertical") * defines.MoveSpeed * Time.deltaTime;
             translationX = Input.GetAxis("Horizontal") * defines.MoveSpeed * Time.deltaTime;
         }
+        if (ctrl.boss)
+        {
+            translationZ =  -1 * defines.MoveSpeed * Time.deltaTime;
+            translationX = -1 * defines.MoveSpeed * Time.deltaTime;
+
+        }
         float yOffsetOld = yOffset;
         yOffset += ySpd;
         const float h = 1.0f;
         float spd = 10.0f * Time.deltaTime;
         if (!hasPress && (translationX != 0.0f || translationZ != 0.0f))
         {
+            SpriteRenderer sr = gameObject.GetComponentInChildren<SpriteRenderer>();
+
+            if (translationX < 0)
+            {
+                sr.flipX = false;
+            }
+            if (translationX > 0)
+            {
+                sr.flipX = true;
+            }
             if (ySpd == 0.0f)
             {
                 ySpd = spd;
@@ -62,11 +80,11 @@ public class keyboardCtrl : MonoBehaviour {
                 Debug.Log("您按下了Space键");
                 ctrl.beginEmitNoJump();
                 hasPress = true;
-                ctrl.check = true;
             }
         }
-
     }
+
+
     public void emitCircle(int r, bool jump)
     {
         GameObject obj = Instantiate(circlePrefab);

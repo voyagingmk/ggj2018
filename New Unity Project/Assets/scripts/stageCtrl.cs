@@ -7,6 +7,7 @@ using UnityEngine.UI;
 public class stageCtrl : MonoBehaviour {
     public cameraFollow camFol;
     public GameObject stage;
+    public GameObject roleBoss;
     public List<GameObject> stagePrefabs;
     public List<GameObject> stagePrefabs2;
     public List<GameObject> stagePrefabCur;
@@ -33,6 +34,7 @@ public class stageCtrl : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+        roleBoss.SetActive(false);
         blackBg.enabled = false;
         blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 0);
         InitBtns();
@@ -80,7 +82,7 @@ public class stageCtrl : MonoBehaviour {
         roleCtrl[] roleCtrls = stage.GetComponentsInChildren<roleCtrl>();
         for(int i = 0; i < roleCtrls.Length; i++)
         {
-            if(roleCtrls[i].check)
+            if(roleCtrls[i].inputTimes == 0)
             {
                 checkNum += 1;
             }
@@ -91,24 +93,49 @@ public class stageCtrl : MonoBehaviour {
         }
         if(checkNum != roleCtrls.Length)
         {
+            // 不是全部人都被激活，开始检测失败
             if(checkNum > 0)
             {
-                GameObject[] circles = GameObject.FindGameObjectsWithTag("circle");
-                if(circles.Length == 0)
+                int outputCount = 0;
+                for (int i = 0; i < roleCtrls.Length; i++)
                 {
+                    outputCount += roleCtrls[i].outputTimes;
+                }  
+                if(outputCount == 0)
+                { 
+                    // 输出都为0了，失败了
                     end = true;
                     Invoke("FadeAndEnterStage", defines.changeDelay);
                 }
             }
             return;
         }
+
+        // 胜利 checkNum == roleCtrls.Length 所有人都被激活
         end = true;
         /*
         if (lastOne) {
             camFol.tweenToNext(lastOne.gameObject);
         }*/
         stageIdx += 1;
+        if (stagePrefabCur.Count <= stageIdx)
+        {
+            BeginLastStage();
+            return;
+        }
         Invoke("FadeAndEnterStage", defines.changeDelay);
+    }
+
+    public void BeginLastStage()
+    {
+        if (!roleBoss)
+        {
+            return;
+        }
+        roleBoss.SetActive(true);
+        keyboardCtrl kCtrl = roleBoss.GetComponent<keyboardCtrl>();
+        roleCtrl rCtrl = roleBoss.GetComponent<roleCtrl>();
+        rCtrl.bossEmit();
     }
 
     public void FadeAndEnterStage()
