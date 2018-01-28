@@ -38,5 +38,7 @@ public class defines
     static public float changeDelay = 2.5f; //检测出关卡结束了，多少秒后开始下黑幕
     static public float FadeSpd = 2.0f; //黑幕渐变速度  x alpha/s   1就是1秒从全白到全黑
     static public float TweenTime = 0.5f; //镜头从一个人转到另一个的时间间隔
-
+    static public GameObject circlePrefab = null;
+    static public bool boss = false;
+    static public float bossr = 10.0f;
 }

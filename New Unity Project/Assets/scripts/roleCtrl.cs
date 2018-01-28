@@ -110,8 +110,7 @@ public class roleCtrl : MonoBehaviour {
                 camFol.tweenToNext(gameObject);
                 if (ctrl.boss)
                 {
-                    GetKCtrl().circlePrefab = ctrl.rCtrl.GetKCtrl().circlePrefab;
-                    GetKCtrl().bossround = true;
+                    GetKCtrl().circlePrefab = defines.circlePrefab;
                     outputTimes = 5;
                     beginEmitJump();
                     continue;
@@ -151,11 +150,11 @@ public class roleCtrl : MonoBehaviour {
         Invoke("beginEmitJump", outputDelay);
     }
 
-    public void Say(int gameType, bool jump,bool boss)
+    public void Say(int gameType, bool jump)
     {
         DataTuple tuple = defines.datas[gameType];
         string str = tuple.a;
-        if (tuple.c.Length > 0) str = boss ? tuple.b : tuple.c;
+        if (tuple.c.Length > 0) str = defines.boss ? tuple.b : tuple.c;
         bg.SetActive(true);
         sayText.gameObject.SetActive(true);
         sayText.text = str;

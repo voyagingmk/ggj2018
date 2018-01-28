@@ -10,6 +10,7 @@ public class stageCtrl : MonoBehaviour {
     public GameObject roleBoss;
     public List<GameObject> stagePrefabs;
     public List<GameObject> stagePrefabs2;
+    public GameObject circlePrefab = null;
     public List<GameObject> stagePrefabCur;
     public int stageIdx = 0;
     public bool end = false;
@@ -34,6 +35,7 @@ public class stageCtrl : MonoBehaviour {
     }
     // Use this for initialization
     void Start () {
+        defines.circlePrefab = circlePrefab;
         roleBoss.SetActive(false);
         blackBg.enabled = false;
         blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 0);
@@ -158,6 +160,7 @@ public class stageCtrl : MonoBehaviour {
         {
             return;
         }
+        defines.boss = true;
         roleBoss.SetActive(true);
         keyboardCtrl kCtrl = roleBoss.GetComponent<keyboardCtrl>();
         roleCtrl rCtrl = roleBoss.GetComponent<roleCtrl>();
