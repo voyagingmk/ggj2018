@@ -27,36 +27,36 @@ public class roleCtrl : MonoBehaviour {
                 textmesh.text = "家里蹲";
                 sp.sprite = splist[0];
                 inputTimes = 1; 
-                outputTimes = 1;
-                circleRadius = 15;
+                outputTimes = 2;
+                circleRadius = 8;
                 break;
             case 2:
                 textmesh.text = "上班族";
                 sp.sprite = splist[1];
-                inputTimes = 2;
+                inputTimes = 1;
                 outputTimes = 1;
-                circleRadius = 15;
+                circleRadius = 16;
                 break;
             case 3:
                 textmesh.text = "老顽固";
                 sp.sprite = splist[2];
-                inputTimes = 3;
-                outputTimes = 1;
-                circleRadius = 15;
+                inputTimes = 8;
+                outputTimes = 8;
+                circleRadius = 12;
                 break;
             case 4:
                 textmesh.text = "大V";
                 sp.sprite = splist[3];
-                inputTimes = 4;
+                inputTimes = 16;
                 outputTimes = 1;
-                circleRadius = 15;
+                circleRadius = 30;
                 break;
             case 5:
                 textmesh.text = "疯子";
                 sp.sprite = splist[4];
-                inputTimes = 5;
+                inputTimes = 1;
                 outputTimes = 1;
-                circleRadius = 15;
+                circleRadius = 1;
                 break;
         }
         maxInputTimes = inputTimes;
