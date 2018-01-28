@@ -65,6 +65,7 @@ public class roleCtrl : MonoBehaviour {
             keyboardCtrl ctrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
             ctrl.enabled = true;
             ctrl.gameObject.tag = "mainrole";
+            outputTimes = 0;
         } else
         {
             if (maxInputTimes > 0)
@@ -107,13 +108,22 @@ public class roleCtrl : MonoBehaviour {
                 sayText.text = (maxInputTimes - inputTimes) + " / " + maxInputTimes;
                 if (inputTimes <= 0 && outputTimes > 0)
                 {
-                    beginEmit();
+                    beginEmitJump();
                 }
             }
         }
     }
+    public void beginEmitNoJump()
+    {
+        beginEmit(false);
+    }
 
-    void beginEmit()
+    public void beginEmitJump()
+    {
+        beginEmit(true);
+    }
+
+    void beginEmit(bool jump)
     {
         if(outputTimes <= 0)
         {
@@ -121,8 +131,8 @@ public class roleCtrl : MonoBehaviour {
         }
         outputTimes -= 1;
         keyboardCtrl kCtrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
-        kCtrl.emitCircle(circleRadius, true);
-        Invoke("beginEmit", outputDelay);
+        kCtrl.emitCircle(circleRadius, jump);
+        Invoke("beginEmitJump", outputDelay);
     }
 
     public void Say(int gameType, bool jump)

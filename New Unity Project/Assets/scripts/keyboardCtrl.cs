@@ -61,7 +61,7 @@ public class keyboardCtrl : MonoBehaviour {
             if (ctrl.main && Input.GetKeyDown(KeyCode.Space))
             {
                 Debug.Log("您按下了Space键");
-                emitCircle(ctrl.circleRadius, false);
+                ctrl.beginEmitNoJump();
                 hasPress = true;
                 ctrl.check = true;
             }
