@@ -6,7 +6,7 @@ public class keyboardCtrl : MonoBehaviour {
     float yOffset = 0.0f;
     public float ySpd = 0.0f;
     public GameObject circlePrefab = null;
-    bool hasPress = false;
+    public bool hasPress = false;
     void Start () {
         yOffset = 0.0f;
         SpriteRenderer sr = gameObject.GetComponentInChildren<SpriteRenderer>();
@@ -95,6 +95,11 @@ public class keyboardCtrl : MonoBehaviour {
 
         roleCtrl rCtrl = gameObject.GetComponentInParent<roleCtrl>();
         stageCtrl sCtrl = GameObject.FindGameObjectWithTag("stageCtrl").GetComponent<stageCtrl>();
+        if(rCtrl.boss)
+        {
+            ctrl.boss = true;
+        }
+        ctrl.rCtrl = rCtrl;
         rCtrl.Say(sCtrl.gameType, jump);
     }
 }

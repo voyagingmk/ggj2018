@@ -65,6 +65,7 @@ public class roleCtrl : MonoBehaviour {
             keyboardCtrl ctrl = this.gameObject.GetComponentInChildren<keyboardCtrl>();
             ctrl.enabled = true;
             ctrl.gameObject.tag = "mainrole";
+            inputTimes = 0;
         } else
         {
             if (maxInputTimes > 0)
@@ -74,9 +75,12 @@ public class roleCtrl : MonoBehaviour {
             }
         }
     }
-	
-	// Update is called once per frame
-	void Update ()
+    public keyboardCtrl GetKCtrl()
+    {
+        return this.gameObject.GetComponentInChildren<keyboardCtrl>();
+    }
+    // Update is called once per frame
+    void Update ()
     {
         GameObject camObj = GameObject.FindGameObjectWithTag("MainCamera");
         cameraFollow camFol = camObj.GetComponent<cameraFollow>();
@@ -102,6 +106,13 @@ public class roleCtrl : MonoBehaviour {
                 ctrl.collideList.Add(gameObject.GetInstanceID());
                 Jump();
                 camFol.tweenToNext(gameObject);
+                if (ctrl.boss)
+                {
+                    GetKCtrl().circlePrefab = ctrl.rCtrl.GetKCtrl().circlePrefab;
+                    outputTimes = maxInputTimes;
+                    beginEmitJump();
+                    continue;
+                }
                 if (inputTimes <= 0)
                 {
                     continue;

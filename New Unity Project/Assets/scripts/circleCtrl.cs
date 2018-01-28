@@ -17,6 +17,9 @@ public class circleCtrl : MonoBehaviour
     public float len = 2.0f;
     private MeshFilter meshFilter;
 
+    public bool boss = false;
+    public roleCtrl rCtrl;
+
     void Start()
     {
 

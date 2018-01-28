@@ -78,6 +78,7 @@ public class stageCtrl : MonoBehaviour {
             return;
         }
         int checkNum = 0;
+        roleCtrl main = null;
         roleCtrl lastOne = null;
         roleCtrl[] roleCtrls = stage.GetComponentsInChildren<roleCtrl>();
         for(int i = 0; i < roleCtrls.Length; i++)
@@ -90,40 +91,49 @@ public class stageCtrl : MonoBehaviour {
             {
                 lastOne = roleCtrls[i];
             }
-        }
-        if(checkNum != roleCtrls.Length)
-        {
-            // 不是全部人都被激活，开始检测失败
-            if(checkNum > 0)
+            if (roleCtrls[i].main)
             {
-                int outputCount = 0;
-                for (int i = 0; i < roleCtrls.Length; i++)
-                {
-                    outputCount += roleCtrls[i].outputTimes;
-                }  
-                if(outputCount == 0)
-                { 
-                    // 输出都为0了，失败了
-                    end = true;
-                    Invoke("FadeAndEnterStage", defines.changeDelay);
-                }
+                main = roleCtrls[i];
+            }
+        }
+        GameObject[] circles = GameObject.FindGameObjectsWithTag("circle");
+        //
+        if (!main.GetKCtrl().hasPress)
+        {
+            return;
+        }
+        // 失败检测
+        if(checkNum < roleCtrls.Length && circles.Length == 0)
+        {
+            int outputCount = 0;
+            for (int i = 0; i < roleCtrls.Length; i++)
+            {
+                outputCount += roleCtrls[i].outputTimes;
+            }  
+            if(outputCount == 0)
+            { 
+                // 输出都为0了，失败了
+                end = true;
+                Invoke("FadeAndEnterStage", defines.changeDelay);
             }
             return;
         }
-
-        // 胜利 checkNum == roleCtrls.Length 所有人都被激活
-        end = true;
-        /*
-        if (lastOne) {
-            camFol.tweenToNext(lastOne.gameObject);
-        }*/
-        stageIdx += 1;
-        if (stagePrefabCur.Count <= stageIdx)
+        // 都被激活
+        if (checkNum == roleCtrls.Length)
         {
-            BeginLastStage();
-            return;
+            end = true;
+            /*
+            if (lastOne) {
+                camFol.tweenToNext(lastOne.gameObject);
+            }*/
+            stageIdx += 1;
+            if (stagePrefabCur.Count <= stageIdx)
+            {
+                BeginLastStage();
+                return;
+            }
+            Invoke("FadeAndEnterStage", defines.changeDelay);
         }
-        Invoke("FadeAndEnterStage", defines.changeDelay);
     }
 
     public void BeginLastStage()
