@@ -104,7 +104,13 @@ public class stageCtrl : MonoBehaviour {
                 main = roleCtrls[i];
             }
         }
-        if (Input.GetKeyDown(KeyCode.F1))
+		if (Input.GetKeyDown(KeyCode.F1))
+		{
+			end = true;
+			FadeAndEnterStage();
+			return;
+		}
+		if (Input.GetKeyDown(KeyCode.F2))
         {
             defines.changeDelay = 1.0f;
             Win(lastOne);

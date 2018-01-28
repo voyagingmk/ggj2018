@@ -108,7 +108,7 @@ public class roleCtrl : MonoBehaviour {
                 ctrl.collideList.Add(gameObject.GetInstanceID());
                 Jump();
                 camFol.tweenToNext(gameObject);
-                if (ctrl.boss)
+				if (ctrl.boss && inputTimes == 0)
                 {
                     GetKCtrl().circlePrefab = defines.circlePrefab;
                     outputTimes = maxOutputTimes;
