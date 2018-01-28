@@ -126,7 +126,7 @@ public class stageCtrl : MonoBehaviour {
         fadeSpd = -fadeSpdConstant;
         blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 1.0f);
         EnterStage();
-        Invoke("OnFadeIn", 1);
+        Invoke("OnFadeIn", changeDelay);
     }
     public void OnFadeIn()
     {
@@ -137,6 +137,11 @@ public class stageCtrl : MonoBehaviour {
     {
         if (stage)
         {
+            GameObject[] circles = GameObject.FindGameObjectsWithTag("circle");
+            for (int i = 0; i < circles.Length; i++)
+            {
+                Destroy(circles[i]);
+            }
             Destroy(stage);
             stage = null;
         }
