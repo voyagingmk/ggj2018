@@ -96,6 +96,12 @@ public class stageCtrl : MonoBehaviour {
                 main = roleCtrls[i];
             }
         }
+        if (Input.GetKeyDown(KeyCode.F1))
+        {
+            defines.changeDelay = 1.0f;
+            Win(lastOne);
+            return;
+        }
         GameObject[] circles = GameObject.FindGameObjectsWithTag("circle");
         //
         if (!main.GetKCtrl().hasPress)
@@ -124,18 +130,24 @@ public class stageCtrl : MonoBehaviour {
         // 都被激活了
         if (checkNum == roleCtrls.Length)
         {
-            end = true;
-            if (lastOne) {
-                camFol.lastOne = lastOne.gameObject;
-            }
-            stageIdx += 1;
-            if (stagePrefabCur.Count <= stageIdx)
-            {
-                BeginLastStage();
-                return;
-            }
-            Invoke("FadeAndEnterStage", defines.changeDelay);
+            Win(lastOne);
         }
+    }
+
+    public void Win(roleCtrl lastOne)
+    {
+        end = true;
+        if (lastOne)
+        {
+            camFol.lastOne = lastOne.gameObject;
+        }
+        stageIdx += 1;
+        if (stagePrefabCur.Count <= stageIdx)
+        {
+            BeginLastStage();
+            return;
+        }
+        Invoke("FadeAndEnterStage", defines.changeDelay);
     }
 
     public void BeginLastStage()
