@@ -42,7 +42,7 @@ public class stageCtrl : MonoBehaviour {
         {
             s.SetActive(false);
         }
-        if (stagePrefabs2.Count == 0) stagePrefabs = stagePrefabs2;
+        if (stagePrefabs2.Count == 0) stagePrefabs2 = stagePrefabs;
         foreach (GameObject s in stagePrefabs2)
         {
             s.SetActive(false);
