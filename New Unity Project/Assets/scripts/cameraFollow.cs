@@ -8,8 +8,13 @@ public class cameraFollow : MonoBehaviour {
     public Vector3 offset = new Vector3(0, 20, -17);
     public float t = 0.0f;
     public bool tweening = false;
+    public GameObject lastOne;
+    public Sequence mySequence;
     // Use this for initialization
-    void Start () {
+    void Start ()
+    {
+        mySequence = null;
+        lastOne = null;
         DOTween.Init(false, true, LogBehaviour.ErrorsOnly);
 
     }
@@ -19,8 +24,18 @@ public class cameraFollow : MonoBehaviour {
         GameObject followObject = GameObject.FindWithTag("mainrole");
         Vector3 p = followObject.transform.parent.transform.position;
         tweening = true;
-        transform.DOMove(tweenToObj.transform.position + offset, defines.TweenTime).SetEase(Ease.InOutQuad);
-  //      DOTween.To(() => transform.position, x => transform.position = x, tweenToObj.transform.position, 0.5).SetRelative().SetLoops(-1, LoopType.Yoyo);
+        if(mySequence != null)
+        {
+            mySequence.Kill();
+        }
+        mySequence = DOTween.Sequence();
+        mySequence.Append(
+            transform.DOMove(tweenToObj.transform.position + offset, defines.TweenTime).SetEase(Ease.InOutQuad));
+        if (lastOne)
+        {
+            mySequence.Append(
+                transform.DOMove(lastOne.transform.position + offset, defines.TweenTime).SetEase(Ease.InOutQuad));
+        }
     }
 
     // Update is called once per frame

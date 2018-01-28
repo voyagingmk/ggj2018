@@ -125,10 +125,9 @@ public class stageCtrl : MonoBehaviour {
         if (checkNum == roleCtrls.Length)
         {
             end = true;
-            /*
             if (lastOne) {
-                camFol.tweenToNext(lastOne.gameObject);
-            }*/
+                camFol.lastOne = lastOne.gameObject;
+            }
             stageIdx += 1;
             if (stagePrefabCur.Count <= stageIdx)
             {
@@ -183,6 +182,7 @@ public class stageCtrl : MonoBehaviour {
             Destroy(stage);
             stage = null;
         }
+        camFol.lastOne = null;
         camFol.tweening = false;
         camFol.t = 0;
         end = false;
