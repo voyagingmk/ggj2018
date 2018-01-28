@@ -40,8 +40,8 @@ public class roleCtrl : MonoBehaviour {
             case 3:
                 textmesh.text = "老顽固";
                 sp.sprite = splist[2];
-                inputTimes = 8;
-                outputTimes = 8;
+                inputTimes = 7;
+                outputTimes = 7;
                 circleRadius = 12;
                 break;
             case 4:
