@@ -33,5 +33,8 @@ public class defines
     new DataTuple("我从河北省来", "美国 圣地亚戈"),
     new DataTuple("红红火火何厚滑", "韩韩会画画后悔画韩宏"),
     new DataTuple("苟利国家生死以", "爱国、民主……", "+1s"),
-};
+    };
+    static public float MoveSpeed = 10.0f;   //移动速度
+    static public float changeDelay = 3.0f; //检测出关卡结束了，多少秒后开始下黑幕
+    static public float FadeSpd = 1.0f; //黑幕渐变速度  x alpha/s   1就是1秒从全白到全黑
 }

@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class keyboardCtrl : MonoBehaviour {
-    float speed = 5.0f;   //移动速度
     float yOffset = 0.0f;
     public float ySpd = 0.0f;
     public GameObject circlePrefab = null;
@@ -20,8 +19,8 @@ public class keyboardCtrl : MonoBehaviour {
         float translationX = 0;
         if (ctrl.main)
         {
-            translationZ = Input.GetAxis("Vertical") * speed * Time.deltaTime;
-            translationX = Input.GetAxis("Horizontal") * speed * Time.deltaTime;
+            translationZ = Input.GetAxis("Vertical") * defines.MoveSpeed * Time.deltaTime;
+            translationX = Input.GetAxis("Horizontal") * defines.MoveSpeed * Time.deltaTime;
         }
         float yOffsetOld = yOffset;
         yOffset += ySpd;
