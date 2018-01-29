@@ -15,6 +15,23 @@ public class DataTuple
     public string c;
 };
 
+public class Subtitle
+{
+    public Subtitle(string _zh, string _en, int _begin, int _end)
+    {
+        zh = _zh;
+        en = _en;
+        begin = _begin;
+        end = _end;
+    }
+    public string zh;
+    public string en;
+    public int begin;
+    public int end;
+};
+
+
+
 public class defines
 {
     static public List<DataTuple> datas = new List<DataTuple> {
@@ -41,4 +58,13 @@ public class defines
     static public GameObject circlePrefab = null;
     static public bool boss = false;
     static public float bossr = 20.0f;
+
+    static public Dictionary<int, List<Subtitle>> Subtitles = new Dictionary<int, List<Subtitle>> {
+        {
+            0, // 关卡编号 从0开始数
+            new List<Subtitle> {
+                new Subtitle("字幕测试", "Subtitle Test", 0, 10),
+            }
+        }
+    };
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using DG.Tweening;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -19,6 +20,9 @@ public class stageCtrl : MonoBehaviour {
     public int gameType = -1;
     public Image blackBg;
     public float fadeSpd = 0;
+    public Text subtitleZh;
+    public Text subtitleEn;
+    public Text clickToStart;
     void InitBtns()
     {
         int i = 0;
@@ -61,7 +65,7 @@ public class stageCtrl : MonoBehaviour {
         btns[0].transform.parent.gameObject.SetActive(false);
         stagePrefabCur = gameType != 14 ? stagePrefabs : stagePrefabs2;
         FadeAndEnterStage();
-
+        clickToStart.gameObject.SetActive(false);
     }
 	
 	// Update is called once per frame
@@ -76,6 +80,10 @@ public class stageCtrl : MonoBehaviour {
         if (oldAlpha < 1.0f && blackBg.color.a >= 1.0f)
         {
             OnFadeOut();
+        }
+        if (oldAlpha > 0.0f && blackBg.color.a <= 0.0f)
+        {
+            OnFadeIn();
         }
 
 		if (Input.GetKeyDown (KeyCode.F3)){
@@ -207,11 +215,37 @@ public class stageCtrl : MonoBehaviour {
         fadeSpd = -defines.FadeSpd;
         blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 1.0f);
         EnterStage();
-        Invoke("OnFadeIn", defines.changeDelay);
     }
     public void OnFadeIn()
     {
         blackBg.enabled = false;
+        // 开始播放字幕
+        if (defines.Subtitles.ContainsKey(stageIdx))
+        {
+            List<Subtitle> lst = defines.Subtitles[stageIdx];
+            foreach(Subtitle s in lst)
+            {
+                StartCoroutine(ShowSubTitle(s.zh, s.en, s.begin, s.end));
+            }
+        }
+    }
+
+    public IEnumerator ShowSubTitle(string zh, string en, int begin, int end)
+    {
+        Debug.Log(zh + "," + en + "," + begin + "," + end);
+        if (begin > 0)
+        {
+            yield return new WaitForSeconds(begin);
+        }
+        // 显示字幕
+        subtitleZh.text = zh;
+        subtitleEn.text = en;
+        subtitleZh.DOColor(new Color(0, 0, 0, 1), 1.5f);
+        subtitleEn.DOColor(new Color(0, 0, 0, 1), 1.5f);
+        yield return new WaitForSeconds(end - begin);
+        // 隐藏字幕 
+        subtitleZh.DOColor(new Color(0, 0, 0, 0), 1.5f);
+        subtitleEn.DOColor(new Color(0, 0, 0, 0), 1.5f);
     }
 
     public void EnterStage()
