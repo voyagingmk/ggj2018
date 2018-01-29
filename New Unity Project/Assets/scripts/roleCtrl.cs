@@ -60,6 +60,7 @@ public class roleCtrl : MonoBehaviour {
                 circleRadius = 2;
                 break;
         }
+		textmesh.gameObject.SetActive(false);
         maxInputTimes = inputTimes;
         maxOutputTimes = outputTimes;
         if (main)

@@ -64,8 +64,8 @@ public class defines
         {
             0, // 关卡编号 从0开始数
             new List<Subtitle> {
-                new Subtitle("字幕测试", "Subtitle Test", 0, 2), // begin  end
-                new Subtitle("字幕测试2", "Subtitle Test2", 3, 5), // begin  end
+				new Subtitle("←↑↓→ or WSAD to Move", "SPACE to Talk", 0, 4), // begin  end
+				new Subtitle("123456789123456789123456789", "Subtitle Test2", 3, 5), // begin  end
             }
         },
         {
@@ -73,6 +73,12 @@ public class defines
             new List<Subtitle> {
                 new Subtitle("字幕测试", "Subtitle Test", 0, 10),
             }
-        }
+		},
+		{
+			2,
+			new List<Subtitle> {
+				new Subtitle("字幕测试", "_(:зゝ∠)_", 0, 10),
+			}
+		}
     };
 }
