@@ -58,10 +58,18 @@ public class defines
     static public GameObject circlePrefab = null;
     static public bool boss = false;
     static public float bossr = 20.0f;
+    static public float SubtitleFadeTime = 0.1f;
 
     static public Dictionary<int, List<Subtitle>> Subtitles = new Dictionary<int, List<Subtitle>> {
         {
             0, // 关卡编号 从0开始数
+            new List<Subtitle> {
+                new Subtitle("字幕测试", "Subtitle Test", 0, 2), // begin  end
+                new Subtitle("字幕测试2", "Subtitle Test2", 3, 5), // begin  end
+            }
+        },
+        {
+            1,
             new List<Subtitle> {
                 new Subtitle("字幕测试", "Subtitle Test", 0, 10),
             }

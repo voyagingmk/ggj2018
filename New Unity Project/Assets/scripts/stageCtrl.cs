@@ -240,12 +240,12 @@ public class stageCtrl : MonoBehaviour {
         // 显示字幕
         subtitleZh.text = zh;
         subtitleEn.text = en;
-        subtitleZh.DOColor(new Color(0, 0, 0, 1), 1.5f);
-        subtitleEn.DOColor(new Color(0, 0, 0, 1), 1.5f);
+        subtitleZh.DOColor(new Color(0, 0, 0, 1), defines.SubtitleFadeTime);
+        subtitleEn.DOColor(new Color(0, 0, 0, 1), defines.SubtitleFadeTime);
         yield return new WaitForSeconds(end - begin);
         // 隐藏字幕 
-        subtitleZh.DOColor(new Color(0, 0, 0, 0), 1.5f);
-        subtitleEn.DOColor(new Color(0, 0, 0, 0), 1.5f);
+        subtitleZh.DOColor(new Color(0, 0, 0, 0), defines.SubtitleFadeTime);
+        subtitleEn.DOColor(new Color(0, 0, 0, 0), defines.SubtitleFadeTime);
     }
 
     public void EnterStage()
