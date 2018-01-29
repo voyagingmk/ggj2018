@@ -236,7 +236,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: f9f234e6f033d564abb100cfff8c4ac0, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -270,7 +270,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 10100, guid: 0000000000000000e000000000000000, type: 0}
+  - {fileID: 2100000, guid: f9f234e6f033d564abb100cfff8c4ac0, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -307,7 +307,7 @@ TextMesh:
   m_FontSize: 18
   m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: f9f234e6f033d564abb100cfff8c4ac0, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
@@ -326,9 +326,9 @@ TextMesh:
   m_Alignment: 1
   m_TabSize: 4
   m_FontSize: 20
-  m_FontStyle: 1
+  m_FontStyle: 0
   m_RichText: 1
-  m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+  m_Font: {fileID: 12800000, guid: f9f234e6f033d564abb100cfff8c4ac0, type: 3}
   m_Color:
     serializedVersion: 2
     rgba: 4278190080
@@ -346,6 +346,11 @@ MonoBehaviour:
   type: 5
   main: 1
   lastOne: 0
+  boss: 0
+  inputTimes: 1
+  maxInputTimes: 0
+  outputTimes: 1
+  maxOutputTimes: 0
   outputDelay: 2
   circleRadius: 100
   textmesh: {fileID: 102318679862442116}
@@ -356,7 +361,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: fab0f3fc53c71f94ca2da9d53ebf3118, type: 3}
   - {fileID: 21300000, guid: 464f53a937df723479196efa6aa8b3c0, type: 3}
   - {fileID: 21300000, guid: bbdee90f144bdf24c845955d8d58e5fa, type: 3}
-  check: 0
   bg: {fileID: 1301411312126154}
   sayText: {fileID: 102565317499047846}
 --- !u!114 &114951039954202064
@@ -373,6 +377,7 @@ MonoBehaviour:
   ySpd: 0
   circlePrefab: {fileID: 1335769019576992, guid: 4963a8b266e860d4b908f7d79354a073,
     type: 2}
+  hasPress: 0
 --- !u!212 &212236706360577576
 SpriteRenderer:
   m_ObjectHideFlags: 1

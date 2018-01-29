@@ -268,7 +268,7 @@ public class stageCtrl : MonoBehaviour {
         {
             return;
         }
-        text.text = "第  " + (stageIdx + 1) + " 关";
+        text.text = "第 " + (stageIdx + 1) + " 关";
         stage = Instantiate(stagePrefabCur[stageIdx]);
         stage.transform.parent = transform;
         stage.SetActive(true);
