@@ -235,7 +235,7 @@ public class stageCtrl : MonoBehaviour {
 	public void ShowCircleSubTitile() {
 		if (defines.Subtitles1.ContainsKey(stageIdx))
 		{
-			defines.Subtitles[stageIdx]= null;
+			//defines.Subtitles[stageIdx]= null;
 			List<Subtitle> lst = defines.Subtitles1[stageIdx];
 			foreach(Subtitle s in lst)
 			{
