@@ -216,6 +216,8 @@ public class stageCtrl : MonoBehaviour {
         blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 1.0f);
         EnterStage();
     }
+
+	// 关卡黑幕消失时调用
     public void OnFadeIn()
     {
         blackBg.enabled = false;
@@ -237,9 +239,13 @@ public class stageCtrl : MonoBehaviour {
         {
             yield return new WaitForSeconds(begin);
         }
+		string zhNew = zh.Replace("[XXX]", defines.datas[gameType].a);
+		zhNew = zhNew.Replace("[YYY]", defines.datas[gameType].b);
+		string enNew = en.Replace("[XXX]", defines.datas[gameType].a);
+		enNew = enNew.Replace("[YYY]", defines.datas[gameType].b);
         // 显示字幕
-        subtitleZh.text = zh;
-        subtitleEn.text = en;
+		subtitleZh.text = zhNew;
+		subtitleEn.text = enNew;
         subtitleZh.DOColor(new Color(0, 0, 0, 1), defines.SubtitleFadeTime);
         subtitleEn.DOColor(new Color(0, 0, 0, 1), defines.SubtitleFadeTime);
         yield return new WaitForSeconds(end - begin);

@@ -67,7 +67,7 @@ public class defines
             0, // 关卡编号 从0开始数
             new List<Subtitle> {
 				new Subtitle("←↑↓→ or WSAD to Move", "SPACE to Talk", 0, 4), // begin  end
-				new Subtitle("123456789123456789123456789", "Subtitle Test2", 3, 5), // begin  end
+				new Subtitle("123456789[XXX]123456[YYY]789123456789", "Subtitle Test2", 3, 20), // begin  end
             }
         },
         {
