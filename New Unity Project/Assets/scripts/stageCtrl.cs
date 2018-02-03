@@ -217,7 +217,7 @@ public class stageCtrl : MonoBehaviour {
         EnterStage();
     }
 
-	// 关卡黑幕消失时调用
+	// 关卡黑幕消失时调用，关卡淡入
     public void OnFadeIn()
     {
         blackBg.enabled = false;
@@ -231,6 +231,32 @@ public class stageCtrl : MonoBehaviour {
             }
         }
     }
+
+	public void ShowCircleSubTitile() {
+		if (defines.Subtitles1.ContainsKey(stageIdx))
+		{
+			defines.Subtitles[stageIdx]= null;
+			List<Subtitle> lst = defines.Subtitles1[stageIdx];
+			foreach(Subtitle s in lst)
+			{
+				StartCoroutine(ShowSubTitle(s.zh, s.en, s.begin, s.end));
+			}
+		}
+	
+	}
+
+	public void ShowBossSubTitile() {
+		if (defines.Subtitles2.ContainsKey(stageIdx))
+		{
+			//defines.Subtitles1[stageIdx]= null;
+			List<Subtitle> lst = defines.Subtitles2[stageIdx];
+			foreach(Subtitle s in lst)
+			{
+				StartCoroutine(ShowSubTitle(s.zh, s.en, s.begin, s.end));
+			}
+		}
+
+	}
 
     public IEnumerator ShowSubTitle(string zh, string en, int begin, int end)
     {

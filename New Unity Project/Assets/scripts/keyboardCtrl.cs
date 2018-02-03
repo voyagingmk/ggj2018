@@ -79,6 +79,9 @@ public class keyboardCtrl : MonoBehaviour {
             {
                 Debug.Log("您按下了Space键");
                 ctrl.beginEmitNoJump();
+				// 播字幕
+				stageCtrl sCtrl = GameObject.FindGameObjectWithTag("stageCtrl").GetComponent<stageCtrl>();
+				sCtrl.ShowCircleSubTitile ();
                 hasPress = true;
             }
         }
