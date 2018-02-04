@@ -67,7 +67,7 @@ public class defines
             0, // 关卡编号 从0开始数
             new List<Subtitle> {
 				new Subtitle("←↑↓→ or WSAD to Move", "SPACE to Talk", 0, 4), // begin  end
-				new Subtitle("123456789[XXX]123456[YYY]789123456789", "Subtitle Test2", 4, 20), // begin  end
+				new Subtitle("123456789[XXX]123456[YYY]789123456789", "Subtitle[XXX] Test2[YYY]", 4, 20), // begin  end
             }
         },
         {
@@ -77,9 +77,9 @@ public class defines
             }
 		},
 		{
-			2,
+			6,
 			new List<Subtitle> {
-				new Subtitle("字幕测试", "_(:зゝ∠)_", 0, 10),
+				new Subtitle("66666666666666666", "666666666666666666666666", 0, 1000),
 			}
 		}
     };
@@ -87,7 +87,7 @@ public class defines
 		{
 			0, // 关卡编号 从0开始数
 			new List<Subtitle> {
-				new Subtitle("2333333333333", "emmmmmm", 0, 4), // begin  end
+				new Subtitle("2333333333333", "emmmmmm", 0, 1), // begin  end
 			}
 		},
 		{
@@ -103,24 +103,7 @@ public class defines
 			}
 		}
 	};
-	static public Dictionary<int, List<Subtitle>> Subtitles2 = new Dictionary<int, List<Subtitle>> {
-		{
-			0, // 关卡编号 从0开始数
-			new List<Subtitle> {
-				new Subtitle("2333333333333", "emmmmmm", 0, 4), // begin  end
-			}
-		},
-		{
-			1,
-			new List<Subtitle> {
-				new Subtitle("字幕测试", "Subtitle Test", 0, 10),
-			}
-		},
-		{
-			2,
-			new List<Subtitle> {
-				new Subtitle("字幕测试", "_(:зゝ∠)_", 0, 10),
-			}
-		}
+	static public List<Subtitle> Subtitles2 = new List<Subtitle> {
+				new Subtitle("yrrrrrrrrrrr", "yrrrrrrrrr", 0, 100), // begin  end
 	};
 }

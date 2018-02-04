@@ -18,11 +18,13 @@ public class stageCtrl : MonoBehaviour {
     public Text text;
     public List<Button> btns;
     public int gameType = -1;
-    public Image blackBg;
+	public Image blackBg;
+	public Image lastBlackBg;
     public float fadeSpd = 0;
     public Text subtitleZh;
     public Text subtitleEn;
     public Text clickToStart;
+	public int subType = 0; //0=关卡计时，1=发波计时，2=boss进场
     void InitBtns()
     {
         int i = 0;
@@ -163,7 +165,7 @@ public class stageCtrl : MonoBehaviour {
     }
 
     public void Win(roleCtrl lastOne)
-    {
+	{
         end = true;
         if (lastOne)
         {
@@ -200,7 +202,17 @@ public class stageCtrl : MonoBehaviour {
         keyboardCtrl kCtrl = roleBoss.GetComponent<keyboardCtrl>();
         roleCtrl rCtrl = roleBoss.GetComponent<roleCtrl>();
         rCtrl.bossEmit();
+		ShowBossSubTitile ();
+		StartCoroutine(ShowLastBlack());
     }
+
+	IEnumerator ShowLastBlack() {
+		lastBlackBg.gameObject.SetActive (true);
+		yield return new WaitForSeconds(1);
+		lastBlackBg.color = new Color (0, 0, 0, 0);
+		lastBlackBg.DOColor(new Color(1, 1, 1, 1), 2);
+
+	}
 
     public void FadeAndEnterStage()
     {
@@ -221,6 +233,7 @@ public class stageCtrl : MonoBehaviour {
     public void OnFadeIn()
     {
         blackBg.enabled = false;
+		subType = 0;
         // 开始播放字幕
         if (defines.Subtitles.ContainsKey(stageIdx))
         {
@@ -233,9 +246,10 @@ public class stageCtrl : MonoBehaviour {
     }
 
 	public void ShowCircleSubTitile() {
+		StopAllCoroutines ();
 		if (defines.Subtitles1.ContainsKey(stageIdx))
 		{
-			//defines.Subtitles[stageIdx]= null;
+			//subType = 1;
 			List<Subtitle> lst = defines.Subtitles1[stageIdx];
 			foreach(Subtitle s in lst)
 			{
@@ -246,14 +260,14 @@ public class stageCtrl : MonoBehaviour {
 	}
 
 	public void ShowBossSubTitile() {
-		if (defines.Subtitles2.ContainsKey(stageIdx))
+		StopAllCoroutines ();
+		Debug.Log("233333333333333333333333333333333333333");
+		Debug.Log("2444444444444444444444444444444444444444444");
+		List<Subtitle> lst = defines.Subtitles2;
+		foreach(Subtitle s in lst)
 		{
-			//defines.Subtitles1[stageIdx]= null;
-			List<Subtitle> lst = defines.Subtitles2[stageIdx];
-			foreach(Subtitle s in lst)
-			{
-				StartCoroutine(ShowSubTitle(s.zh, s.en, s.begin, s.end));
-			}
+			Debug.Log("2555555555555555555555555555555555555555");
+			StartCoroutine(ShowSubTitle(s.zh, s.en, s.begin, s.end));
 		}
 
 	}
