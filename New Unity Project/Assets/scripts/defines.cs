@@ -17,7 +17,7 @@ public class DataTuple
 
 public class Subtitle
 {
-    public Subtitle(string _zh, string _en, int _begin, int _end)
+	public Subtitle(string _zh, string _en, double _begin, double _end)
     {
         zh = _zh;
         en = _en;
@@ -26,8 +26,8 @@ public class Subtitle
     }
     public string zh;
     public string en;
-    public int begin;
-    public int end;
+	public double begin;
+	public double end;
 };
 
 
@@ -44,9 +44,9 @@ public class defines
 	new DataTuple("I took an arrow in the knee", "Wouldn't mind a few rounds of gwent"),
 	new DataTuple("红红火火何厚滑", "韩韩会画画后悔画韩宏"),
     new DataTuple("我从河北省来", "美国 圣地亚戈"),
-	new DataTuple("万物皆可无双", "你可能是正版游戏的受害者"),
-	new DataTuple("叽嘟", "不可吱"),
-	new DataTuple("《黄冈兵法》", "《5年高考3年模拟》"),
+	new DataTuple(":D", "_(:зゝ∠)_"),
+	new DataTuple("《传记霸业》", "《贪玩青月》"),
+	new DataTuple("红色有角三倍速", "他变秃了，也变强了"),
 	new DataTuple("彩虹小马", "彩虹喵"),
 	new DataTuple("真水浒无双", "真水浒无双·猛将传"),
 	new DataTuple("哎呀老娘好气啊", "大连有个阿瓦隆"),
@@ -66,8 +66,10 @@ public class defines
         {
             0, // 关卡编号 从0开始数
             new List<Subtitle> {
-				new Subtitle("←↑↓→ or WSAD to Move", "SPACE to Talk", 0, 4), // begin  end
-				new Subtitle("123456789[XXX]123456[YYY]789123456789", "Subtitle[XXX] Test2[YYY]", 4, 20), // begin  end
+				new Subtitle("[←↑↓→] or [WSAD] to Move", "[SPACE] to Forward", 0, 3.5), // begin  end
+				new Subtitle("这位穿着蓝白西装、眼神明亮、头发极度偏分的是一名上班族。", "This man in blue is an employee.", 4, 6.5), 
+				new Subtitle("上班族要上班，没有那么多时间使用社交网络。", "An employee must work, and doesn't have much time using social network.", 7, 9.5), 
+				new Subtitle("所以他经常做的一件事，就是转发。", "So he always forwards.", 10, 11.5), 
             }
         },
         {

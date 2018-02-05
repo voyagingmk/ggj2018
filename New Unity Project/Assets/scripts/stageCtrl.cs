@@ -272,12 +272,12 @@ public class stageCtrl : MonoBehaviour {
 
 	}
 
-    public IEnumerator ShowSubTitle(string zh, string en, int begin, int end)
+	public IEnumerator ShowSubTitle(string zh, string en, double begin, double end)
     {
         Debug.Log(zh + "," + en + "," + begin + "," + end);
         if (begin > 0)
         {
-            yield return new WaitForSeconds(begin);
+			yield return new WaitForSeconds((float)begin);
         }
 		string zhNew = zh.Replace("[XXX]", defines.datas[gameType].a);
 		zhNew = zhNew.Replace("[YYY]", defines.datas[gameType].b);
@@ -288,7 +288,7 @@ public class stageCtrl : MonoBehaviour {
 		subtitleEn.text = enNew;
         subtitleZh.DOColor(new Color(0, 0, 0, 1), defines.SubtitleFadeTime);
         subtitleEn.DOColor(new Color(0, 0, 0, 1), defines.SubtitleFadeTime);
-        yield return new WaitForSeconds(end - begin);
+		yield return new WaitForSeconds((float)(end - begin));
         // 隐藏字幕 
         subtitleZh.DOColor(new Color(0, 0, 0, 0), defines.SubtitleFadeTime);
         subtitleEn.DOColor(new Color(0, 0, 0, 0), defines.SubtitleFadeTime);
