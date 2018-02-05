@@ -24,7 +24,6 @@ public class stageCtrl : MonoBehaviour {
     public Text subtitleZh;
     public Text subtitleEn;
     public Text clickToStart;
-	public int subType = 0; //0=关卡计时，1=发波计时，2=boss进场
     void InitBtns()
     {
         int i = 0;
@@ -206,9 +205,9 @@ public class stageCtrl : MonoBehaviour {
 		StartCoroutine(ShowLastBlack());
     }
 
-	IEnumerator ShowLastBlack() {
+	IEnumerator ShowLastBlack() {//谢幕
+		yield return new WaitForSeconds(defines.lastSceneTime);
 		lastBlackBg.gameObject.SetActive (true);
-		yield return new WaitForSeconds(1);
 		lastBlackBg.color = new Color (0, 0, 0, 0);
 		lastBlackBg.DOColor(new Color(1, 1, 1, 1), 2);
 
@@ -226,6 +225,7 @@ public class stageCtrl : MonoBehaviour {
         Debug.Log("OnFadeOut");
         fadeSpd = -defines.FadeSpd;
         blackBg.color = new Color(blackBg.color.r, blackBg.color.g, blackBg.color.b, 1.0f);
+		HideSubTitle ();
         EnterStage();
     }
 
@@ -233,7 +233,6 @@ public class stageCtrl : MonoBehaviour {
     public void OnFadeIn()
     {
         blackBg.enabled = false;
-		subType = 0;
         // 开始播放字幕
         if (defines.Subtitles.ContainsKey(stageIdx))
         {
@@ -246,10 +245,9 @@ public class stageCtrl : MonoBehaviour {
     }
 
 	public void ShowCircleSubTitile() {
-		StopAllCoroutines ();
 		if (defines.Subtitles1.ContainsKey(stageIdx))
 		{
-			//subType = 1;
+			StopAllCoroutines ();
 			List<Subtitle> lst = defines.Subtitles1[stageIdx];
 			foreach(Subtitle s in lst)
 			{
@@ -260,10 +258,10 @@ public class stageCtrl : MonoBehaviour {
 	}
 
 	public void ShowBossSubTitile() {
-		StopAllCoroutines ();
 		Debug.Log("233333333333333333333333333333333333333");
 		Debug.Log("2444444444444444444444444444444444444444444");
 		List<Subtitle> lst = defines.Subtitles2;
+		StopAllCoroutines ();
 		foreach(Subtitle s in lst)
 		{
 			Debug.Log("2555555555555555555555555555555555555555");
@@ -294,6 +292,14 @@ public class stageCtrl : MonoBehaviour {
         subtitleEn.DOColor(new Color(0, 0, 0, 0), defines.SubtitleFadeTime);
     }
 
+	public void HideSubTitle()
+	{
+		StopAllCoroutines ();
+		// 隐藏字幕 
+		subtitleZh.DOColor(new Color(0, 0, 0, 0), defines.SubtitleFadeTime);
+		subtitleEn.DOColor(new Color(0, 0, 0, 0), defines.SubtitleFadeTime);
+	}
+
     public void EnterStage()
     {
         if (stage)
@@ -314,7 +320,7 @@ public class stageCtrl : MonoBehaviour {
         {
             return;
         }
-        text.text = "第 " + (stageIdx + 1) + " 关";
+        text.text = "Stage " + (stageIdx + 1) ;
         stage = Instantiate(stagePrefabCur[stageIdx]);
         stage.transform.parent = transform;
         stage.SetActive(true);
