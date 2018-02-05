@@ -87,7 +87,7 @@ public class stageCtrl : MonoBehaviour {
             OnFadeIn();
         }
 
-		if (Input.GetKeyDown (KeyCode.F3)){
+		if (Input.GetKeyDown (KeyCode.F3) && defines.cheat){
 
 			btns [14].gameObject.SetActive (true);
 			return;
@@ -119,13 +119,13 @@ public class stageCtrl : MonoBehaviour {
             }
         }
 
-		if (Input.GetKeyDown(KeyCode.F1))
+		if (Input.GetKeyDown(KeyCode.F1) && defines.cheat)
 		{
 			end = true;
 			FadeAndEnterStage();
 			return;
 		}
-		if (Input.GetKeyDown(KeyCode.F2))
+		if (Input.GetKeyDown(KeyCode.F2) && defines.cheat)
         {
             defines.changeDelay = 1.0f;
             Win(lastOne);

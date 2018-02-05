@@ -47,7 +47,7 @@ public class defines
 	new DataTuple(":D", "_(:зゝ∠)_"),
 	new DataTuple("《传记霸业》", "《贪玩青月》"),
 	new DataTuple("红色有角三倍速", "他变秃了，也变强了"),
-	new DataTuple("彩虹小马", "彩虹喵"),
+	new DataTuple("2333333", "6666666"),
 	new DataTuple("真水浒无双", "真水浒无双·猛将传"),
 	new DataTuple("哎呀老娘好气啊", "大连有个阿瓦隆"),
 	new DataTuple("经典力学是真理", "相对论吊打一切"),
@@ -62,6 +62,7 @@ public class defines
     static public float bossr = 20.0f;
     static public float SubtitleFadeTime = 0.1f;
 	static public float lastSceneTime = 21.0f;
+	static public bool cheat = false;
 
     static public Dictionary<int, List<Subtitle>> Subtitles = new Dictionary<int, List<Subtitle>> {
         {
